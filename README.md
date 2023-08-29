@@ -42,7 +42,6 @@ Each recipe card should provide a brief overview of the dish, including its name
 Clicking on a recipe card should lead you to a detailed recipe page. Here, you expect to find a comprehensive list of ingredients and step-by-step instructions written in a friendly and easy-to-follow tone. </br>
 Alongside the written instructions, there should be a convenient link to a related YouTube video tutorial. This way, you can visually learn how to prepare the dish from skilled cooks. </br>
 You should be able to save your favorite recipes for future reference. The website should provide a "Save" or "Bookmark" button on each recipe page, allowing you to create a personalized collection of recipes. </br>
-The website should also suggest similar recipes that you might enjoy, encouraging you to explore different variations of the dishes you're interested in. </br>
 The user interface should be responsive, ensuring that you can access the website and its content seamlessly from a desktop, tablet, or smartphone. </br>
 The overall design and color scheme of the website should evoke warmth and comfort, creating an inviting atmosphere that aligns with the joy of cooking and sharing meals. </br>
 The website should load quickly and maintain a smooth browsing experience, enhancing your overall engagement and satisfaction. </br>
