@@ -1,7 +1,3 @@
-# Stuff Your Face.
-
-With Thomas, Ben, Chris, Lubo, and Anders 
-
 # Website Introduction
 
 Introducing "FlavorfulFinds": Your Culinary Compass to Delight and Inspiration!
