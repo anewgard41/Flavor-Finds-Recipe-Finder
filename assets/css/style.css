@@ -27,3 +27,13 @@ body{
 .bg-custom-hover-orange:hover {
     background-color: #F4AC84;
 }
+
+.hoverable-item {
+    cursor: pointer;
+    color: initial;
+}
+
+.hoverable-item:hover {
+    color: blue;
+    text-decoration: underline;
+}

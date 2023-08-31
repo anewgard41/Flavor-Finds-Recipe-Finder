@@ -60,13 +60,37 @@
         <aside class="w-1/4 bg-gray-200 m-4 p-4">
             <h2 class="text-lg font-semibold mb-2">Filter by Category</h2>
             <ul class="space-y-2">
-                <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Chicken</a></li>
-                <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Pork</a></li>
-                <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Beef</a></li>
-                <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Seafood</a></li>
-                <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Pasta</a></li>
-                <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Fruit</a></li>
-                <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Vegetables</a></li>
+              <ul class="space-y-2">
+                <li class="flex items-center">
+                  <!-- Checkbox -->
+                  <input type="checkbox" class="mr-2" id="checkbox1">
+                  <!-- Hoverable Text -->
+                  <span class="hoverable-item" onclick="toggleCheckbox('checkbox1')">Chicken</span>
+              </li>
+              <li class="flex items-center">
+                  <input type="checkbox" class="mr-2" id="checkbox2">
+                  <span class="hoverable-item" onclick="toggleCheckbox('checkbox2')">Pork</span>
+              </li>
+              <li class="flex items-center">
+                <input type="checkbox" class="mr-2" id="checkbox3">
+                <span class="hoverable-item" onclick="toggleCheckbox('checkbox3')">Beef</span>
+              </li>
+              <li class="flex items-center">
+              <input type="checkbox" class="mr-2" id="checkbox4">
+              <span class="hoverable-item" onclick="toggleCheckbox('checkbox4')">Seafood</span>
+              </li>
+              <li class="flex items-center">
+              <input type="checkbox" class="mr-2" id="checkbox5">
+              <span class="hoverable-item" onclick="toggleCheckbox('checkbox5')">Pasta</span>
+              </li>
+              <li class="flex items-center">
+                <input type="checkbox" class="mr-2" id="checkbox6">
+                <span class="hoverable-item" onclick="toggleCheckbox('checkbox6')">Fruit</span>
+              </li>
+              <li class="flex items-center">
+              <input type="checkbox" class="mr-2" id="checkbox7">
+              <span class="hoverable-item" onclick="toggleCheckbox('checkbox7')">Vegetables</span>
+              </li>
             </ul>
         </aside>
 

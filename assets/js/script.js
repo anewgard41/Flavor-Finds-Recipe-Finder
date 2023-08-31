@@ -16,3 +16,8 @@ function saveRecipe(recipeName) {
         alert('Local storage is not supported by your browser.');
     }
 }
+
+function toggleCheckbox(checkboxId) {
+    const checkbox = document.getElementById(checkboxId);
+    checkbox.checked = !checkbox.checked; // Toggle checkbox's checked state
+}
