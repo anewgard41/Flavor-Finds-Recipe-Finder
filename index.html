@@ -5,26 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Recipe Finder</title>
 </head>
 
-<body class="bg-gray-100">
+<body>
     <!-- Navigation Bar -->
     <nav class="bg-blue-500 p-4">
         <div class="container mx-auto">
             <div class="container mx-auto flex items-center justify-between">
                 <!-- Logo Image -->
                 <img src="./assets/images/flavorful finds.png" alt="FlavorfulFinds Logo" class="h-16">    
-            <!-- Search Box -->
-            <div class="flex items-center space-x-4">
-              <input type="text" placeholder="Search" class="bg-white rounded p-2 focus:outline-none">
-              <button class="bg-green-500 text-white rounded p-2 hover:bg-green-600">Search</button>
-            </div>
-            <!-- Navigation Links or Other Elements -->
-            <div class="space-x-4">
-              <a href="#" class="text-white hover:underline">Home</a>
-              <a href="#" class="text-white hover:underline">Recipe History</a>
-            </div>
+            <h1 class="text-white text-3xl font-semibold">Let's Find A Great Recipe!</h1>
+             <!-- Search Box -->
+             <div class="flex items-center space-x-4">
+                <input type="text" placeholder="Search Recipes" class="bg-white rounded p-2 focus:outline-none">
+                <button class="btn text-white rounded p-2">Search</button>
+              </div>
+              <!-- Navigation Links or Other Elements -->
+              <div class="space-x-4">
+                <a href="#" class="btn rounded p-2 text-white hover:underline">Home</a>
+                <a href="#" class="btn rounded p-2 text-white hover:underline">Recipe History</a>
+              </div>
         </div>
     </nav>
 
@@ -54,7 +57,7 @@
 
     <div class="flex container mx-auto mt-8">
         <!-- Sidebar for Content Filtering -->
-        <aside class="w-1/4 bg-gray-200 p-4">
+        <aside class="w-1/4 bg-gray-200 m-4 p-4">
             <h2 class="text-lg font-semibold mb-2">Filter by Category</h2>
             <ul class="space-y-2">
                 <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Chicken</a></li>
@@ -84,7 +87,6 @@
                   <p class="text-gray-600 mb-4">A mouthwatering pasta recipe that you'll love!</p>
                   <a href="#" class="text-blue-500 hover:underline">Get Recipe</a>
                   <a href="#" class="text-green-500 hover:underline ml-4">Watch Video</a>
-
                 </div>
                 
                 <!-- ... More Recipe Cards ... -->
