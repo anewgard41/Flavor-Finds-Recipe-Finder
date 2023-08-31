@@ -1,0 +1,8 @@
+/* Custom Color For Save Button */
+.bg-custom-orange {
+    background-color: #EB826B;
+}
+
+.bg-custom-hover-orange:hover {
+    background-color: #F4AC84;
+}
