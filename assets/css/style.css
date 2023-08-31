@@ -1,0 +1,20 @@
+:root {
+    --primary: #EB826B;
+    --secondary: #F4AC84;
+    --blue: #3D837B;
+    --lightblue: #64a49d;
+    --palegreen: #c3caa7; 
+}
+
+.btn {
+    background-color: var(--primary);
+
+}
+
+.btn:hover {
+    background: var(--secondary);
+}
+
+body{
+    background-color: var(--palegreen);
+}
