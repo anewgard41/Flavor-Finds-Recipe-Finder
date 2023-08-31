@@ -70,18 +70,18 @@ function toggleCheckbox(checkboxId) {
         recipeContainer.innerHTML = ""; 
 
         recipeData.forEach(recipe => {
-            var recipeCard = document.createElement("div");
+            const recipeCard = document.createElement("div");
             recipeCard.classList.add("bg-white", "rounded-lg", "shadow-md", "p-6");
 
-            var recipeTitle = document.createElement("h2");
+            const recipeTitle = document.createElement("h2");
             recipeTitle.classList.add("text-xl", "font-semibold", "mb-2");
             recipeTitle.textContent = recipe.title;
 
-            var recipeDescription = document.createElement("p");
+            const recipeDescription = document.createElement("p");
             recipeDescription.classList.add("text-gray-600", "mb-4");
             recipeDescription.textContent = recipe.description;
 
-            var getRecipeLink = document.createElement("a");
+            const getRecipeLink = document.createElement("a");
             getRecipeLink.classList.add("text-blue-500", "hover:underline", "mr-4");
             getRecipeLink.href = "#";
             getRecipeLink.textContent = "Get Recipe";
