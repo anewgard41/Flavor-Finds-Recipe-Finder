@@ -14,3 +14,7 @@
 .btn:hover {
     background: var(--secondary);
 }
+
+body{
+    background-color: var(--palegreen);
+}
