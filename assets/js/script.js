@@ -64,3 +64,49 @@ function toggleCheckbox(checkboxId) {
     const checkbox = document.getElementById(checkboxId);
     checkbox.checked = !checkbox.checked; // Toggle checkbox's checked state
 }
+
+function displayRecipes(recipeData) {
+    const recipeContainer = document.querySelector('.grid'); 
+    // Clear previous results
+    recipeContainer.innerHTML = ""; 
+
+    recipeData.forEach(recipe => {
+        const recipeCard = document.createElement("div");
+        recipeCard.classList.add("bg-white", "rounded-lg", "shadow-md", "m-4", "p-6", "flex", "flex-col");
+        
+        // Creates recipe title
+        const recipeTitle = document.createElement("h2");
+        recipeTitle.classList.add("text-xl", "font-semibold", "mb-2");
+        recipeTitle.textContent = recipe.title;
+
+        // Creates recipe description
+        const recipeDescription = document.createElement("p");
+        recipeDescription.classList.add("text-gray-600", "mb-4");
+        recipeDescription.textContent = recipe.description;
+
+        // Create a container for action buttons
+        const actionContainer = document.createElement("div");
+        actionContainer.classList.add("mt-auto", "flex", "space-x-2");
+        
+        // Creates the "Get Recipe" link
+        const getRecipeLink = document.createElement("a");
+        getRecipeLink.classList.add("text-blue-500", "hover:underline");
+        getRecipeLink.href = "#";
+        getRecipeLink.textContent = "Get Recipe";
+
+        // Creates "Save Recipe" button
+        const saveRecipeButton = document.createElement("button");
+        saveRecipeButton.classList.add("btn", "btn-primary");
+        saveRecipeButton.textContent = "Save Recipe";
+        saveRecipeButton.addEventListener("click", function () {
+            saveRecipe(recipe.title); // saveRecipe function is place holder for favorites function
+        });
+
+        actionContainer.appendChild(getRecipeLink);
+        actionContainer.appendChild(saveRecipeButton);
+        recipeCard.appendChild(recipeTitle);
+        recipeCard.appendChild(recipeDescription);
+        recipeCard.appendChild(actionContainer);
+        recipeContainer.appendChild(recipeCard);
+    });
+}
