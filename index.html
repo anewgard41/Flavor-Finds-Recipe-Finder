@@ -10,20 +10,20 @@
     <title>Recipe Finder</title>
 </head>
 
-<body>
+<body class="bg-gray-100">
     <!-- Navigation Bar -->
-    <nav class="bg-blue-500 p-4">
+    <nav class="bg-blue-500 p-4 flex">
         <div class="container mx-auto">
-            <div class="container mx-auto flex items-center justify-between">
+            <div class="container mx-auto flex items-center justify-between flex-wrap">
                 <!-- Logo Image -->
-                <img src="./assets/images/flavorful finds.png" alt="FlavorfulFinds Logo" class="h-16">    
+                <img src="./assets/images/flavorful finds.png" alt="FlavorfulFinds Logo" class=" my-2 h-16">    
              <!-- Search Box -->
-             <div class="flex items-center space-x-4">
-                <input id="searchInput" type="text" placeholder="Search Recipes" class="bg-white rounded p-2 focus:outline-none">
-                <button id="searchButton" class="btn text-white rounded p-2">Search</button>
+             <div class="flex my-4 items-center space-x-4">
+                <input type="text" placeholder="Search Recipes" class="bg-white rounded p-2 focus:outline-none">
+                <button class="btn text-white rounded p-2">Search</button>
               </div>
               <!-- Navigation Links or Other Elements -->
-              <div class="space-x-4">
+              <div class="space-x-4 my-2">
                 <a href="#" class="btn rounded p-2 text-white hover:underline">Home</a>
                 <a href="#" class="btn rounded p-2 text-white hover:underline">Recipe History</a>
               </div>
@@ -54,10 +54,11 @@
         </div>
       </div>
 
-    <div class="flex container mx-auto mt-8">
+    <div class="flex container mx-auto mt-8 flex-wrap">
         <!-- Sidebar for Content Filtering -->
-        <aside class="w-1/4 bg-gray-200 m-4 p-4">
+        <aside class="rounded bg-gray-200 m-4 p-4 asidecolor">
             <h2 class="text-lg font-semibold mb-2">Filter by Category</h2>
+
             <ul class="space-y-2">
               <ul class="space-y-2">
                 <li class="flex items-center">
@@ -90,6 +91,7 @@
               <input type="checkbox" class="mr-2" id="checkbox7">
               <span class="hoverable-item" onclick="toggleCheckbox('checkbox7')">Vegetables</span>
               </li>
+
             </ul>
         </aside>
 
