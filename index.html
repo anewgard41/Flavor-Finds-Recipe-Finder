@@ -15,17 +15,17 @@
             <div class="container mx-auto flex items-center justify-between">
                 <!-- Logo Image -->
                 <img src="./assets/images/flavorful finds.png" alt="FlavorfulFinds Logo" class="h-16">    
-            <h1 class="text-white text-2xl font-semibold">Let's Find A Great Recipe!</h1>
-            <!-- Search Box -->
-            <div class="flex items-center space-x-4">
-              <input type="text" placeholder="Search" class="bg-white rounded p-2 focus:outline-none">
-              <button class="bg-green-500 text-white rounded p-2 hover:bg-green-600">Search</button>
-            </div>
-            <!-- Navigation Links or Other Elements -->
-            <div class="space-x-4">
-              <a href="#" class="text-white hover:underline">Home</a>
-              <a href="#" class="text-white hover:underline">Recipe History</a>
-            </div>
+            <h1 class="text-white text-3xl font-semibold">Let's Find A Great Recipe!</h1>
+             <!-- Search Box -->
+             <div class="flex items-center space-x-4">
+                <input type="text" placeholder="Search Recipes" class="bg-white rounded p-2 focus:outline-none">
+                <button class="btn text-white rounded p-2">Search</button>
+              </div>
+              <!-- Navigation Links or Other Elements -->
+              <div class="space-x-4">
+                <a href="#" class="btn rounded p-2 text-white hover:underline">Home</a>
+                <a href="#" class="btn rounded p-2 text-white hover:underline">Recipe History</a>
+              </div>
         </div>
     </nav>
 
@@ -58,13 +58,37 @@
         <aside class="w-1/4 bg-gray-200 p-4">
             <h2 class="text-lg font-semibold mb-2">Filter by Category</h2>
             <ul class="space-y-2">
-                <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Chicken</a></li>
-                <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Pork</a></li>
-                <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Beef</a></li>
-                <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Seafood</a></li>
-                <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Pasta</a></li>
-                <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Fruit</a></li>
-                <li><a href="#" class="text-blue-500 hover:underline"><input type="checkbox" class="mr-2">Vegetables</a></li>
+              <ul class="space-y-2">
+                <li class="flex items-center">
+                  <!-- Checkbox -->
+                  <input type="checkbox" class="mr-2" id="checkbox1">
+                  <!-- Hoverable Text -->
+                  <span class="hoverable-item" onclick="toggleCheckbox('checkbox1')">Chicken</span>
+              </li>
+              <li class="flex items-center">
+                  <input type="checkbox" class="mr-2" id="checkbox2">
+                  <span class="hoverable-item" onclick="toggleCheckbox('checkbox2')">Pork</span>
+              </li>
+              <li class="flex items-center">
+                <input type="checkbox" class="mr-2" id="checkbox3">
+                <span class="hoverable-item" onclick="toggleCheckbox('checkbox3')">Beef</span>
+              </li>
+              <li class="flex items-center">
+              <input type="checkbox" class="mr-2" id="checkbox4">
+              <span class="hoverable-item" onclick="toggleCheckbox('checkbox4')">Seafood</span>
+              </li>
+              <li class="flex items-center">
+              <input type="checkbox" class="mr-2" id="checkbox5">
+              <span class="hoverable-item" onclick="toggleCheckbox('checkbox5')">Pasta</span>
+              </li>
+              <li class="flex items-center">
+                <input type="checkbox" class="mr-2" id="checkbox6">
+                <span class="hoverable-item" onclick="toggleCheckbox('checkbox6')">Fruit</span>
+              </li>
+              <li class="flex items-center">
+              <input type="checkbox" class="mr-2" id="checkbox7">
+              <span class="hoverable-item" onclick="toggleCheckbox('checkbox7')">Vegetables</span>
+              </li>
             </ul>
         </aside>
 
@@ -72,7 +96,7 @@
         <section class="w-3/4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Recipe Card 1 -->
-                <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="bg-white rounded-lg shadow-md m-4 p-6">
                     <h2 class="text-xl font-semibold mb-2">Delicious Pasta</h2>
                     <p class="text-gray-600 mb-4">A mouthwatering pasta recipe that you'll love!</p>
                     <a href="#" class="text-blue-500 hover:underline">Get Recipe</a>
@@ -89,6 +113,8 @@
     <footer class="bg-gray-300 p-4 mt-8">
         <p class="text-center text-gray-600">© 2023 FlavorfulFinds. All rights reserved.</p>
     </footer>
+<script src="assets/js/script.js"></script>
+
 </body>
 
 </html>
