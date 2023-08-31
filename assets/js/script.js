@@ -65,31 +65,31 @@ function toggleCheckbox(checkboxId) {
     checkbox.checked = !checkbox.checked; // Toggle checkbox's checked state
 }
 
-    function displayRecipes(recipeData) {
-        // Clear previous results
-        recipeContainer.innerHTML = ""; 
+function displayRecipes(recipeData) {
+    // Clear previous results
+    recipeContainer.innerHTML = ""; 
 
-        recipeData.forEach(recipe => {
-            const recipeCard = document.createElement("div");
-            recipeCard.classList.add("bg-white", "rounded-lg", "shadow-md", "p-6");
+    recipeData.forEach(recipe => {
+        const recipeCard = document.createElement("div");
+        recipeCard.classList.add("bg-white", "rounded-lg", "shadow-md", "p-6");
 
-            const recipeTitle = document.createElement("h2");
-            recipeTitle.classList.add("text-xl", "font-semibold", "mb-2");
-            recipeTitle.textContent = recipe.title;
+        const recipeTitle = document.createElement("h2");
+        recipeTitle.classList.add("text-xl", "font-semibold", "mb-2");
+        recipeTitle.textContent = recipe.title;
 
-            const recipeDescription = document.createElement("p");
-            recipeDescription.classList.add("text-gray-600", "mb-4");
-            recipeDescription.textContent = recipe.description;
+        const recipeDescription = document.createElement("p");
+        recipeDescription.classList.add("text-gray-600", "mb-4");
+        recipeDescription.textContent = recipe.description;
 
-            const getRecipeLink = document.createElement("a");
-            getRecipeLink.classList.add("text-blue-500", "hover:underline", "mr-4");
-            getRecipeLink.href = "#";
-            getRecipeLink.textContent = "Get Recipe";
+        const getRecipeLink = document.createElement("a");
+        getRecipeLink.classList.add("text-blue-500", "hover:underline", "mr-4");
+        getRecipeLink.href = "#";
+        getRecipeLink.textContent = "Get Recipe";
 
-            recipeCard.appendChild(recipeTitle);
-            recipeCard.appendChild(recipeDescription);
-            recipeCard.appendChild(getRecipeLink);
+        recipeCard.appendChild(recipeTitle);
+        recipeCard.appendChild(recipeDescription);
+        recipeCard.appendChild(getRecipeLink);
 
-            recipeContainer.appendChild(recipeCard);
-        });
-    }
+        recipeContainer.appendChild(recipeCard);
+    });
+}
