@@ -32,3 +32,12 @@
     color: blue;
     text-decoration: underline;
 }
+
+.bg-secondary{
+    background-color: var(--secondary);
+    
+}
+
+li {
+    display: inline;
+}

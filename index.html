@@ -56,38 +56,38 @@
 
     <div class="flex container mx-auto mt-8 flex-wrap">
         <!-- Sidebar for Content Filtering -->
-        <aside class="rounded bg-gray-200 m-4 p-4 asidecolor">
+        <aside class="rounded bg-secondary m-4 p-4">
             <h2 class="text-lg font-semibold mb-2">Filter by Category</h2>
 
-            <ul class="space-y-2">
-              <ul class="space-y-2">
-                <li class="flex items-center">
+            <ul class="space-x-2 space-y-2 sm:block flex flex-wrap item-stretch justify-evenly">
+              
+              <li class="flex">
                   <!-- Checkbox -->
                   <input type="checkbox" class="mr-2" id="checkbox1">
                   <!-- Hoverable Text -->
                   <span class="hoverable-item" onclick="toggleCheckbox('checkbox1')">Chicken</span>
               </li>
-              <li class="flex items-center">
+              <li class="flex">
                   <input type="checkbox" class="mr-2" id="checkbox2">
                   <span class="hoverable-item" onclick="toggleCheckbox('checkbox2')">Pork</span>
               </li>
-              <li class="flex items-center">
+              <li class="flex">
                 <input type="checkbox" class="mr-2" id="checkbox3">
                 <span class="hoverable-item" onclick="toggleCheckbox('checkbox3')">Beef</span>
               </li>
-              <li class="flex items-center">
+              <li class="flex">
               <input type="checkbox" class="mr-2" id="checkbox4">
               <span class="hoverable-item" onclick="toggleCheckbox('checkbox4')">Seafood</span>
               </li>
-              <li class="flex items-center">
+              <li class="flex">
               <input type="checkbox" class="mr-2" id="checkbox5">
               <span class="hoverable-item" onclick="toggleCheckbox('checkbox5')">Pasta</span>
               </li>
-              <li class="flex items-center">
+              <li class="flex">
                 <input type="checkbox" class="mr-2" id="checkbox6">
                 <span class="hoverable-item" onclick="toggleCheckbox('checkbox6')">Fruit</span>
               </li>
-              <li class="flex items-center">
+              <li class="flex">
               <input type="checkbox" class="mr-2" id="checkbox7">
               <span class="hoverable-item" onclick="toggleCheckbox('checkbox7')">Vegetables</span>
               </li>
@@ -97,7 +97,7 @@
 
         <!-- Recipe Cards Section -->
         <section class="w-3/4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="m-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Recipe Card 1 -->
                 <div class="bg-white rounded-lg shadow-md p-6">
                   <h2 class="text-xl font-semibold mb-2">Delicious Pasta</h2>
