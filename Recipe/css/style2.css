@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+// VARIABLES
+$bg: url("https://wallpaperscraft.com/image/coffee_coffee_beans_cupcake_candy_93301_1920x1080.jpg") no-repeat center;
+$food: url("http://img.taste.com.au/UZVXAdo7/taste/2016/11/chinese-egg-noodle-and-vegetable-stir-fry-94186-1.jpeg") no-repeat center;
+
+// FONT
+$font: 'Roboto', sans-serif;
+
+// COLORS
+$white: #fff;
+$black: #212129;
+$gray: #9B9B9B;
+$heart: #17BEBB;
+$star: #FFE500;
+$button: #EF3E36;
+
+* {
+   margin: 0;
+   padding: 0;
+   font-family: $font;
+   list-style-type: none;
+   text-decoration: none;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   -o-box-sizing: border-box;
+   box-sizing: border-box;
+}
+
+img {
+   max-width: 100%;
+}
+
+html, body {
+   height: 100%;
+}
+
+body {
+   background: $bg;
+}
+
+.card {
+   position: relative;
+   background: $white;
+   max-width: 500px;
+   margin: 20px auto;
+   box-shadow: 0px 0px 30px 2px #000;
+   .header {
+      background: $food;
+      background-size: cover;
+      min-height: 350px;
+         .icon a .fa-heart-o {
+         position: absolute;
+         left: 85%;
+         bottom: 30.7%;
+         background: $heart;
+         color: $white;
+         font-size: 1.3em;
+         font-weight: bold;
+         padding: 15px;
+         border-radius: 50%;
+         box-shadow: 0px 5px 30px 1px $heart;
+      }
+   }
+   .text {
+      .food {
+         color: $black;
+         text-align: left;
+         font-weight: normal;
+         text-transform: uppercase;
+         letter-spacing: 0.1em;
+         margin: 5px 30px;
+      }
+      .fa-clock-o {
+         color: $gray;
+         margin: 0 30px;
+      }
+      .fa-users {
+         color: $gray;
+      }
+   }
+   .stars {
+      margin: 10px 30px;
+      li a i {
+         color: $star;
+      }
+   }
+   .info {
+      margin: 10px 30px;
+   }
+   a.btn {
+      display: block;
+      background: $button;
+      color: $white;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: center;
+      padding: 10px;
+      transition: 250ms;
+      &:hover {
+         background: $heart;
+         transition: 250ms;
+      }
+   }
+}
