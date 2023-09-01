@@ -37,9 +37,6 @@
           console.error('Error fetching YouTube data:', error);
         });
     }
-    
-    
-
 
 function saveRecipe(recipeName) {
     // Check if local storage is supported by the browser
@@ -59,6 +56,23 @@ function saveRecipe(recipeName) {
         alert('Local storage is not supported by your browser.');
     }
 }
+
+function showRecipeSavedAlert() {
+  const alertBox = document.getElementById('recipeSavedAlert');
+  if (alertBox) {
+      alertBox.style.display = 'block'; // Display the alert box
+      setTimeout(function () {
+          alertBox.style.display = 'none'; // Hide the alert box after 3000 milliseconds (3 seconds)
+      }, 3000);
+  }
+}
+
+//Clear button function to clear the content on page and the local storage (Working on it)
+$("#clearFieldsBtn").click(function(event) {
+  event.preventDefault;
+  $("textArea").val("");
+  localStorage.clear();
+});
 
 function toggleCheckbox(checkboxId) {
     const checkbox = document.getElementById(checkboxId);
