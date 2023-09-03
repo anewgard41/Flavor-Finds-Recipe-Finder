@@ -54,17 +54,35 @@
         </div>
       </div>
 
+      <div id="recipesContainer" class= "container mx-auto mt-10"></div>
+
+    <!-- Recipe Card 1 -Lyubomir
     <div class="flex container mx-auto mt-8 flex-wrap">
-        <!-- Sidebar for Content Filtering -->
+      <div class="recipe-card">
+        <h1 class="recipe-title"></h1>
+        <img class="recipe-image" src="" alt="">
+        <p class="recipe-description">
+      
+        </p>
+        <div class="button-container">
+            <button class="button">View Recipe</button>
+            <button class="button">Watch Video</button>
+        </div>
+    </div> -->
+
+    
+      
+      
+      <!-- Sidebar for Content Filtering
         <aside class="rounded bg-gray-200 m-4 p-4 asidecolor">
             <h2 class="text-lg font-semibold mb-2">Filter by Category</h2>
             <ul class="space-y-2">
               <ul class="space-y-2">
                 <li class="flex items-center">
-                  <!-- Checkbox -->
-                  <input type="checkbox" class="mr-2" id="checkbox1">
+                  Checkbox -->
+                  <!-- <input type="checkbox" class="mr-2" id="checkbox1"> -->
                   <!-- Hoverable Text -->
-                  <span class="hoverable-item" onclick="toggleCheckbox('checkbox1')">Chicken</span>
+                  <!-- <span class="hoverable-item" onclick="toggleCheckbox('checkbox1')">Chicken</span>
               </li>
               <li class="flex items-center">
                   <input type="checkbox" class="mr-2" id="checkbox2">
@@ -91,23 +109,10 @@
               <span class="hoverable-item" onclick="toggleCheckbox('checkbox7')">Vegetables</span>
               </li>
             </ul>
-        </aside>
+        </aside>  -->
 
         <!-- Recipe Cards Section -->
-        <section class="w-3/4">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Recipe Card 1 -->
-            <div class="bg-white rounded-lg shadow-md p-6 relative"> <!-- Add relative positioning -->
-              <!-- Star Icon in Top Left Corner -->
-              <button class="bg-custom-orange text-white rounded-full p-2 hover:bg-custom-hover-orange mt-2 absolute top-0 right-0"
-                  onclick="saveRecipe('Delicious Pasta')">
-                <i class="far fa-star">&#11088;</i> <!-- Use Font Awesome class for star icon -->
-              </button>
-            <h2 class="text-xl font-semibold mb-2">Delicious Pasta</h2>
-            <!-- Card Information -->
-              <p class="text-gray-600 mb-4">A mouthwatering pasta recipe that you'll love!</p>
-              <a href="#" class="text-blue-500 hover:underline">Get Recipe</a>
-              <a href="#" class="text-green-500 hover:underline ml-4">Watch Video</a>
+
             </div>
             <!-- ... More Recipe Cards ... -->
           </div>

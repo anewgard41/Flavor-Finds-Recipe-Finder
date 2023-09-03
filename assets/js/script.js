@@ -1,42 +1,101 @@
+// Get the DOM elements
+const searchInput = document.getElementById('searchInput');
+const searchButton = document.getElementById('searchButton');
+const recipesContainer = document.getElementById('recipesContainer'); // Moved up
 
-  // Get the DOM elements
-  const searchInput = document.getElementById('searchInput');
-  const searchButton = document.getElementById('searchButton');
+let searchQuery = "";
+const APP_Key = '9ddc8cb8ba63145367540ecdb0325eca';
+const APP_ID = '768d6b62';
 
-  let searchQuery = "";
-  const APP_Key = '9ddc8cb8ba63145367540ecdb0325eca'
-  const APP_ID = '768d6b62' 
+let youtubeVideoUrls = {};
+let lastFetchedRecipes = []; // To store the last fetched recipes
 
-  // Event Listener for search button click
-  searchButton.addEventListener('click', function() {
+// Event Listener for search button click
+searchButton.addEventListener('click', function() {
     const searchQuery = searchInput.value; // Get the value from the search input
     fetchRecipes(searchQuery);
-    fetchYouTubeVideos(searchQuery)
-  });
+    fetchYouTubeVideos(searchQuery);
+});
 
-  // Function to fetch recipes
-  function fetchRecipes(query) {
+// Function to fetch recipes
+function fetchRecipes(query) {
     fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_Key}&from=0&to=10`)
-      .then(response => response.json())
-      .then(data => {
-        // Handle the data here
-        console.log(data.hits);
-      })
-    }
-
-    function fetchYouTubeVideos(query) {
-      const youtubeApiKey = 'AIzaSyDlsKcDuBF3IJ7tLet9c-tx9HslfPMTFGw'; 
-      fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&key=${youtubeApiKey}&maxResults=5&type=video`)
         .then(response => response.json())
         .then(data => {
-          // Handle the YouTube video data here
-          // You can update the videoResultsDiv with the data
-          console.log(data.items);
+            console.log(data.hits);
+            lastFetchedRecipes = data.hits; // Save fetched recipes
+            displayRecipes(data.hits);
+        });
+}
+
+function displayRecipes(recipes) {
+    recipesContainer.innerHTML = '';
+
+    recipes.forEach(recipe => {
+        const recipeData = recipe.recipe;
+        const videoUrl = youtubeVideoUrls[recipeData.label] || '';
+
+        const recipeCard = `
+        <div class="bg-white shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
+            <img src="${recipeData.image}" alt="${recipeData.label}" class="w-full h-40 rounded-md">
+            <h2 class="text-lg font-bold my-2">${recipeData.label}</h2>
+            <a href="${recipeData.url}" target="_blank" class="text-blue-500 hover:underline">View Recipe</a>
+            <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="text-blue-500 hover:underline">Watch Video</a>
+        </div>
+    `;
+
+    recipesContainer.innerHTML += recipeCard;
+    });
+}
+
+function handleWatchVideoClick(recipeLabel) {
+    recipesContainer.innerHTML = ''; // Clear the existing recipes
+    fetchYouTubeVideos(recipeLabel);
+}
+
+function fetchYouTubeVideos(query) {
+    const youtubeApiKey = 'AIzaSyDlsKcDuBF3IJ7tLet9c-tx9HslfPMTFGw'; 
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&key=${youtubeApiKey}&maxResults=10&type=video`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.items);
+            displayYouTubeVideos(data.items); // Pass the video results to the display function
         })
         .catch(error => {
-          console.error('Error fetching YouTube data:', error);
+            console.error('Error fetching YouTube data:', error);
         });
-    }
+}
+
+function displayYouTubeVideos(videos) {
+    recipesContainer.innerHTML = ''; // Clear the recipes
+  
+    videos.forEach(video => {
+        const videoTitle = video.snippet.title;
+        const videoThumbnail = video.snippet.thumbnails.medium.url;
+        const videoUrl = `https://www.youtube.com/watch?v=${video.id.videoId}`;
+
+        const videoCard = `
+            <div class="bg-white shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
+                <img src="${videoThumbnail}" alt="${videoTitle}" class="w-full h-40 rounded-md">
+                <h2 class="text-lg font-bold my-2">${videoTitle}</h2>
+                <a href="${videoUrl}" target="_blank" class="text-blue-500 hover:underline">Go to Video</a>
+            </div>
+        `;
+
+        recipesContainer.innerHTML += videoCard;
+    });
+
+    // Add the back button after displaying YouTube videos
+    const backButton = document.createElement('button');
+    backButton.textContent = "Go Back to Recipes";
+    backButton.onclick = function() {
+        recipesContainer.innerHTML = ''; // Clear current videos
+        displayRecipes(lastFetchedRecipes); // Redisplay previous recipes
+    };
+
+    recipesContainer.appendChild(backButton);
+}
+
     
     
 
