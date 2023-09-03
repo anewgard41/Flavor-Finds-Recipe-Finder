@@ -5,7 +5,9 @@
 
   let searchQuery = "";
   const APP_Key = '9ddc8cb8ba63145367540ecdb0325eca'
-  const APP_ID = '768d6b62' 
+  const APP_ID = '768d6b62'
+
+  let youtubeVideoUrls = {};
 
   // Event Listener for search button click
   searchButton.addEventListener('click', function() {
@@ -19,10 +21,34 @@
     fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_Key}&from=0&to=10`)
       .then(response => response.json())
       .then(data => {
-        // Handle the data here
         console.log(data.hits);
+        displayRecipes(data.hits);
       })
     }
+
+    function displayRecipes(recipes) {
+      const recipesContainer = document.getElementById('recipesContainer')
+      recipesContainer.innerHTML = '';
+
+      recipes.forEach(recipe => {
+        const recipeData = recipe.recipe;
+        const videoUrl = youtubeVideoUrls[recipeData.label] || '';
+        
+
+        const recipeCard = `
+        <div class="bg-white shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
+            <img src="${recipeData.image}" alt="${recipeData.label}" class="w-full h-40 rounded-md">
+            <h2 class="text-lg font-bold my-2">${recipeData.label}</h2>
+            <a href="${recipeData.url}" target="_blank" class="text-blue-500 hover:underline">View Recipe</a>
+        </div>
+    `;
+
+    recipesContainer.innerHTML += recipeCard;
+      })
+
+    }
+  
+
 
     function fetchYouTubeVideos(query) {
       const youtubeApiKey = 'AIzaSyDlsKcDuBF3IJ7tLet9c-tx9HslfPMTFGw'; 

@@ -32,3 +32,46 @@
     color: blue;
     text-decoration: underline;
 }
+
+.recipe-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.recipe-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.recipe-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.recipe-description {
+    margin-bottom: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
