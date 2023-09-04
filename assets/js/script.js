@@ -154,7 +154,7 @@ const recipeHistoryLink = document.getElementById('recipeHistoryLink');
 
 recipeHistoryLink.addEventListener('click', function(event) {
     event.preventDefault();
-    displayRecipes(savedRecipes);
+    displaySavedRecipes(savedRecipes);
 });
 
 
