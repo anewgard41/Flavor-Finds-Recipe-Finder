@@ -37,6 +37,10 @@ function displayRecipes(recipes) {
             <h2 class="text-lg font-bold my-2">${recipeData.label}</h2>
             <a href="${recipeData.url}" target="_blank" class="text-blue-500 hover:underline">View Recipe</a>
             <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="text-blue-500 hover:underline">Watch Video</a>
+            <button class="bg-custom-orange text-white rounded-full p-2 hover:bg-custom-hover-orange mt-2"
+                    onclick="saveRecipe('Delicious Pasta')">
+                  <i class="far fa-heart">&#11088;</i>
+                  </button>
         </div>
     `;
 
