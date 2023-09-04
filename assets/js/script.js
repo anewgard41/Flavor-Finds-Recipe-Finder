@@ -8,7 +8,7 @@ const APP_Key = '9ddc8cb8ba63145367540ecdb0325eca';
 const APP_ID = '768d6b62';
 
 let lastFetchedRecipes = [];
-
+let savedRecipes = [];
 // Event Listener for search button click
 searchButton.addEventListener('click', function() {
     const searchQuery = searchInput.value;
@@ -37,16 +37,19 @@ function displayRecipes(recipes) {
             <h2 class="text-lg font-bold my-2">${recipeData.label}</h2>
             <a href="${recipeData.url}" target="_blank" class="text-blue-500 hover:underline">View Recipe</a>
             <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="text-blue-500 hover:underline">Watch Video</a>
-            <button class="bg-custom-orange text-white rounded-full p-2 hover:bg-custom-hover-orange mt-2"
-                    onclick="saveRecipe('Delicious Pasta')">
-                  <i class="far fa-heart">&#11088;</i>
-                  </button>
+            <button class="bg-custom-orange text-white rounded-full p-2 hover:bg-custom-hover-orange mt-2 save-recipe-button"
+            data-recipe='${JSON.stringify(recipeData)}' onclick="saveRecipe(JSON.parse(this.getAttribute('data-recipe')))">
+              
+              <i class="far fa-heart">&#11088;</i>
+              </button>
+
         </div>
     `;
 
     recipesContainer.innerHTML += recipeCard;
     });
 }
+
 
 function handleWatchVideoClick(recipeLabel) {
     fetchYouTubeVideos(recipeLabel);
@@ -93,21 +96,67 @@ function displayYouTubeVideos(videos) {
 
     recipesContainer.appendChild(backButton);
 }
-
-function saveRecipe(recipeName) {
-    if (typeof(Storage) !== "undefined") {
-        let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
-        if (!savedRecipes.includes(recipeName)) {
-            savedRecipes.push(recipeName);
-            localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
-            alert('Recipe saved successfully!');
-        } else {
-            alert('Recipe is already saved.');
-        }
-    } else {
-        alert('Local storage is not supported by your browser.');
-    }
+function saveRecipe(recipeData) {
+  if (typeof(Storage) !== "undefined") {
+      savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
+      // Check if the recipeData object is not already in savedRecipes
+      const isDuplicate = savedRecipes.some(savedRecipe => savedRecipe.label === recipeData.label);
+      if (!isDuplicate) {
+          savedRecipes.push(recipeData);
+          localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
+          alert('Recipe saved successfully!');
+      } else {
+          alert('Recipe is already saved.');
+      }
+  } else {
+      alert('Local storage is not supported by your browser.');
+  }
 }
+
+
+function displaySavedRecipes(recipes) {
+  recipesContainer.innerHTML = '';
+  recipes.forEach(recipe => {
+      const recipeData = recipe.recipe;
+
+      if (isRecipeSaved(recipeData.label)) { // Check if recipe is saved
+          const recipeCard = `
+          <div class="bg-white shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
+              <img src="${recipeData.image}" alt="${recipeData.label}" class="w-full h-40 rounded-md">
+              <h2 class="text-lg font-bold my-2">${recipeData.label}</h2>
+              <a href="${recipeData.url}" target="_blank" class="text-blue-500 hover:underline">View Recipe</a>
+              <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="text-blue-500 hover:underline">Watch Video</a>
+              <button class="bg-custom-orange text-white rounded-full p-2 hover:bg-custom-hover-orange mt-2"
+              onclick="saveRecipes(recipeData)">
+                    <i class="far fa-heart">&#11088;</i>
+                    </button>
+          </div>
+      `;
+
+          recipesContainer.innerHTML += recipeCard;
+      }
+  });
+}
+function isRecipeSaved(label) {
+  if (typeof(Storage) !== "undefined") {
+      let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
+      return savedRecipes.some(savedRecipe => savedRecipe.label === label);
+  } else {
+      return false;
+  }
+}
+
+
+// Check if there are saved recipes in local storage and retrieve them
+
+const recipeHistoryLink = document.getElementById('recipeHistoryLink');
+
+
+recipeHistoryLink.addEventListener('click', function(event) {
+    event.preventDefault();
+    displayRecipes(savedRecipes);
+});
+
 
 function toggleCheckbox(checkboxId) {
     const checkbox = document.getElementById(checkboxId);
