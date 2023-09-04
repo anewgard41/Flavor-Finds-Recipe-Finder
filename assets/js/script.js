@@ -2,7 +2,7 @@
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 const recipesContainer = document.getElementById('recipesContainer');
-
+localStorage.clear();
 let searchQuery = "";
 const APP_Key = '9ddc8cb8ba63145367540ecdb0325eca';
 const APP_ID = '768d6b62';
@@ -103,7 +103,8 @@ function saveRecipe(recipeData) {
       const isDuplicate = savedRecipes.some(savedRecipe => savedRecipe.label === recipeData.label);
       if (!isDuplicate) {
           savedRecipes.push(recipeData);
-          localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
+          localStorage.setItem('savedRecipes', JSON.stringify(recipeData));
+          console.log(recipeData)
           alert('Recipe saved successfully!');
       } else {
           alert('Recipe is already saved.');
@@ -117,25 +118,20 @@ function saveRecipe(recipeData) {
 function displaySavedRecipes(recipes) {
   recipesContainer.innerHTML = '';
   recipes.forEach(recipe => {
-      const recipeData = recipe.recipe;
+    const recipeData = recipe.recipe;
 
-      if (isRecipeSaved(recipeData.label)) { // Check if recipe is saved
-          const recipeCard = `
-          <div class="bg-white shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
-              <img src="${recipeData.image}" alt="${recipeData.label}" class="w-full h-40 rounded-md">
-              <h2 class="text-lg font-bold my-2">${recipeData.label}</h2>
-              <a href="${recipeData.url}" target="_blank" class="text-blue-500 hover:underline">View Recipe</a>
-              <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="text-blue-500 hover:underline">Watch Video</a>
-              <button class="bg-custom-orange text-white rounded-full p-2 hover:bg-custom-hover-orange mt-2"
-              onclick="saveRecipes(recipeData)">
-                    <i class="far fa-heart">&#11088;</i>
-                    </button>
-          </div>
-      `;
+    const recipeCard = `
+    <div class="bg-white shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
+        <img src="${recipeData.image}" alt="${recipeData.label}" class="w-full h-40 rounded-md">
+        <h2 class="text-lg font-bold my-2">${recipeData.label}</h2>
+        <a href="${recipeData.url}" target="_blank" class="text-blue-500 hover:underline">View Recipe</a>
+        <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="text-blue-500 hover:underline">Watch Video</a>
+    </div>
+`;
 
           recipesContainer.innerHTML += recipeCard;
       }
-  });
+  );
 }
 function isRecipeSaved(label) {
   if (typeof(Storage) !== "undefined") {
@@ -154,7 +150,9 @@ const recipeHistoryLink = document.getElementById('recipeHistoryLink');
 
 recipeHistoryLink.addEventListener('click', function(event) {
     event.preventDefault();
-    displaySavedRecipes(savedRecipes);
+    console.log(savedRecipes)
+    console.log(localStorage.getItem('savedRecipes'))
+    displaySavedRecipes(JSON.parse(localStorage.getItem('savedRecipes')));;
 });
 
 
