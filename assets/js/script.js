@@ -2,7 +2,7 @@
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 const recipesContainer = document.getElementById('recipesContainer');
-localStorage.clear();
+// localStorage.clear();
 let searchQuery = "";
 const APP_Key = '9ddc8cb8ba63145367540ecdb0325eca';
 const APP_ID = '768d6b62';
@@ -98,13 +98,13 @@ function displayYouTubeVideos(videos) {
 }
 function saveRecipe(recipeData) {
   if (typeof(Storage) !== "undefined") {
-      savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
+      let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
       // Check if the recipeData object is not already in savedRecipes
       const isDuplicate = savedRecipes.some(savedRecipe => savedRecipe.label === recipeData.label);
       if (!isDuplicate) {
           savedRecipes.push(recipeData);
-          localStorage.setItem('savedRecipes', JSON.stringify(recipeData));
-          console.log(recipeData)
+          localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
+          console.log(savedRecipes)
           alert('Recipe saved successfully!');
       } else {
           alert('Recipe is already saved.');
@@ -117,15 +117,15 @@ function saveRecipe(recipeData) {
 
 function displaySavedRecipes(recipes) {
   recipesContainer.innerHTML = '';
+  console.log(localStorage.getItem('savedRecipes'))
+  console.log(recipes)
   recipes.forEach(recipe => {
-    const recipeData = recipe.recipe;
-
     const recipeCard = `
     <div class="bg-white shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
-        <img src="${recipeData.image}" alt="${recipeData.label}" class="w-full h-40 rounded-md">
-        <h2 class="text-lg font-bold my-2">${recipeData.label}</h2>
-        <a href="${recipeData.url}" target="_blank" class="text-blue-500 hover:underline">View Recipe</a>
-        <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="text-blue-500 hover:underline">Watch Video</a>
+        <img src="${recipe.image}" alt="${recipe.label}" class="w-full h-40 rounded-md">
+        <h2 class="text-lg font-bold my-2">${recipe.label}</h2>
+        <a href="${recipe.url}" target="_blank" class="text-blue-500 hover:underline">View Recipe</a>
+        <a href="#" onclick="handleWatchVideoClick('${recipe.label}')" class="text-blue-500 hover:underline">Watch Video</a>
     </div>
 `;
 
