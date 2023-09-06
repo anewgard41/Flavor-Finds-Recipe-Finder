@@ -63,7 +63,7 @@ body {
     flex-direction:column;
     justify-content:center;
     cursor: pointer;
-    transition: transform 200ms ease-in;
+    
   
     &__image {
       height: 12rem;
