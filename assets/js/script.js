@@ -160,3 +160,15 @@ function toggleCheckbox(checkboxId) {
     const checkbox = document.getElementById(checkboxId);
     checkbox.checked = !checkbox.checked;
 }
+
+function clearResults() {
+    recipesContainer.innerHTML = '';
+    searchInput.value = '';
+    lastFetchedRecipes = [];
+}
+
+const homeLink = document.getElementById('homeLink');
+homeLink.addEventListener('click', function(event) {
+    event.preventDefault
+    clearResults();
+})
