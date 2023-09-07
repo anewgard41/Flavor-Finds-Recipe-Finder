@@ -132,6 +132,22 @@ function displaySavedRecipes(recipes) {
           recipesContainer.innerHTML += recipeCard;
       }
   );
+  const clearButton = document.createElement('button');
+    clearButton.textContent = 'Clear Saved Recipes';
+    clearButton.classList.add('btn', 'rounded', 'p-2', 'text-white', 'bg-red-500', 'hover:bg-red-600');
+  
+    // Add an event listener to the Clear button
+    clearButton.addEventListener('click', function () {
+      // Clear local storage for saved recipes
+      localStorage.removeItem('savedRecipes');
+      // Hide the Clear button
+      clearButton.style.display = 'none';
+      // Clear the recipesContainer
+      recipesContainer.innerHTML = '';
+    });
+  
+    // Append the Clear button to the recipesContainer
+    recipesContainer.appendChild(clearButton);
 }
 function isRecipeSaved(label) {
   if (typeof(Storage) !== "undefined") {
