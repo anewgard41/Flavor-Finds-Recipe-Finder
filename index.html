@@ -33,29 +33,17 @@
         </div>
     </nav>
 
-    <!-- Possible Alert Box -->
-    <div class="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
-        <div class="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
-          <div class="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"></div>
-        </div>
-        <div class="absolute left-[max(45rem,calc(50%+8rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
-          <div class="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"></div>
-        </div>
-        <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
-          <p class="text-sm leading-6 text-gray-900">
-            <strong class="font-semibold">Testing alert</strong><svg viewBox="0 0 2 2" class="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true"><circle cx="1" cy="1" r="1" /></svg>Enjoy the recipes that we have found for you!
-          </p>
-          <a href="#" class="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">List Below <span aria-hidden="true">&rarr;</span></a>
-        </div>
-        <div class="flex flex-1 justify-end">
-          <button type="button" class="-m-3 p-3 focus-visible:outline-offset-[-4px]">
-            <span class="sr-only">Dismiss</span>
-            <svg class="h-5 w-5 text-gray-900" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
-            </svg>
+    <!-- Recipe Saved Alert -->
+    <div id="recipeSavedAlert" class="fixed bottom-0 left-0 right-0 bg-green-500 text-white px-4 py-2 transition duration-300 transform translate-y-full">
+      <div class="flex justify-between items-center">
+          <p class="font-semibold">Recipe saved successfully!</p>
+          <button onclick="dismissAlert()" class="text-white focus:outline-none">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
           </button>
-        </div>
       </div>
+  </div>
 
       <div id="changingHeader" class="p-2"></div>
       <div id="recipesContainer" class= "container mx-auto mt-10"></div>
@@ -84,10 +72,10 @@
             <ul class="space-x-2 space-y-2 sm:block flex flex-wrap justify-evenly">
               
               <li class="flex ml-2 mt-2">
-                  <!-- Checkbox -->
-                  <input type="checkbox" class="mr-2" id="checkbox1">
-                  <!-- Hoverable Text -->
-                  <span class="hoverable-item" onclick="toggleCheckbox('checkbox1')">Chicken</span>
+                <!-- Checkbox -->
+                <input type="checkbox" class="mr-2" id="checkbox1">
+                <!-- Hoverable Text -->
+                <span class="hoverable-item" onclick="toggleCheckbox('checkbox1')"><label for="chickenFilter">Chicken</label></span>
               </li>
               <li class="flex">
                   <input type="checkbox" class="mr-2" id="checkbox2">
@@ -98,19 +86,20 @@
                 <span class="hoverable-item" onclick="toggleCheckbox('checkbox3')">Beef</span>
               </li>
               <li class="flex">
-              <input type="checkbox" class="mr-2" id="checkbox4">
-              <span class="hoverable-item" onclick="toggleCheckbox('checkbox4')">Seafood</span>
+                <input type="checkbox" class="mr-2" id="checkbox4">
+                <span class="hoverable-item" onclick="toggleCheckbox('checkbox4')">Seafood</span>
               </li>
               <li class="flex">
-              <input type="checkbox" class="mr-2" id="checkbox5">
-              <span class="hoverable-item" onclick="toggleCheckbox('checkbox5')">Pasta</span>
+                <input type="checkbox" class="mr-2" id="checkbox5">
+                <span class="hoverable-item" onclick="toggleCheckbox('checkbox5')">Pasta</span>
+
               </li>
               <li class="flex">
                 <input type="checkbox" class="mr-2" id="checkbox6">
                 <span class="hoverable-item" onclick="toggleCheckbox('checkbox6')">Fruit</span>
               </li>
-              <li class="flex">
-              <input type="checkbox" class="mr-2" id="checkbox7">
+                <li class="flex">
+                <input type="checkbox" class="mr-2" id="checkbox7">
               <span class="hoverable-item" onclick="toggleCheckbox('checkbox7')">Vegetables</span>
               </li>
             </ul>
@@ -174,18 +163,36 @@
                   <i class="fa-regular fa-star"></i> <!-- Use Font Awesome class for star icon -->
                 </div>
               </div>
-
           </div>
-        
         </section>
 
+              <div class="card rounded relative space-y-2 bg-white rounded p-2 m-2 w-60">
+                <div class="card__body mx-auto rounded bg-white p-2">
+                  </button>
+                  <img
+                    src="https://images.unsplash.com/photo-1529928520614-7c76e2d99740?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
+                    alt="" class="mx-auto card__image">
+                  <h2 class="p-2 text-lg font-semibold">Baked Cod with Vegetables</h2>
+                  <p class="p-2">Baked Cod with Vegetables. 30 minute meal!</p>
+                </div>
+                <div class="mx-auto">
+                  <button
+                    class="h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline hover:bg-indigo-800">View
+                    Recipe</button>
+                  <a class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline hover:bg-indigo-800"
+                    href="#">Link</a>
+                  <i class="fa-regular fa-star"></i> <!-- Use Font Awesome class for star icon -->
+                </div>
+              </div>
+          </div>
+        </section>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-300 p-4 mt-8">
+    <footer class="relative bottom-0 w-full bg-gray-300 p-4">
         <p class="text-center text-gray-600">© 2023 FlavorfulFinds. All rights reserved.</p>
     </footer>
-<script src="assets/js/script.js"></script>
+  <script src="assets/js/script.js"></script>
 
 </body>
 
