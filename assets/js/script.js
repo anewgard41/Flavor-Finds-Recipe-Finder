@@ -17,6 +17,27 @@ searchButton.addEventListener('click', function() {
     fetchRecipes(searchQuery);
 });
 
+// Add an event listener for the "Enter" key press in the input field
+searchInput.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        const searchQuery = searchInput.value;
+        fetchRecipes(searchQuery)
+    }
+});
+
+// Add the click option for filter by the items in sidebar
+function filterItems() {
+    const chickenFilter = document.getElementById('chickenFilter');
+    const items = itemList.getElementsByTagName('li');
+
+    // Loop through the items and hide/show based on the checkbox state
+    for (let i = 0; i < items.length; i++) {
+        const itemText = items[i].textContent.toLowerCase();
+        const containsChicken = itemText.includes('chicken');
+        items[i].style.display = chickenFilter.checked && containsChicken ? 'block' : 'none';
+    }
+}
+
 // Function to fetch recipes
 function fetchRecipes(query) {
     fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_Key}&from=0&to=10`)
@@ -51,7 +72,6 @@ function displayRecipes(recipes) {
     recipesContainer.innerHTML += recipeCard;
     });
 }
-
 
 function handleWatchVideoClick(recipeLabel) {
     fetchYouTubeVideos(recipeLabel);
@@ -116,7 +136,6 @@ function saveRecipe(recipeData) {
   }
 }
 
-
 function displaySavedRecipes(recipes) {
   recipesContainer.innerHTML = '';
   changingHeader.innerHTML = "";
@@ -146,11 +165,9 @@ function isRecipeSaved(label) {
   }
 }
 
-
 // Check if there are saved recipes in local storage and retrieve them
 
 const recipeHistoryLink = document.getElementById('recipeHistoryLink');
-
 
 recipeHistoryLink.addEventListener('click', function(event) {
     event.preventDefault();
@@ -158,7 +175,6 @@ recipeHistoryLink.addEventListener('click', function(event) {
     console.log(localStorage.getItem('savedRecipes'))
     displaySavedRecipes(JSON.parse(localStorage.getItem('savedRecipes')));;
 });
-
 
 function toggleCheckbox(checkboxId) {
     const checkbox = document.getElementById(checkboxId);
@@ -175,5 +191,22 @@ const homeLink = document.getElementById('homeLink');
 homeLink.addEventListener('click', function(event) {
     event.preventDefault
     clearResults();
+
+})
+
+// Alert box
+function showAlert() {
+    const alertBox = document.getElementById('recipeSavedAlert');
+    if (alertBox) {
+        alertBox.classList.remove('translate-y-full');
+    }
+}
+
+function dismissAlert() {
+    const alertBox = document.getElementById('recipeSavedAlert');
+    if (alertBox) {
+        alertBox.classList.add('translate-y-full');
+    }
+}
     changingHeader.innerHTML = "Recommended/Popular Recipes!"
 })
