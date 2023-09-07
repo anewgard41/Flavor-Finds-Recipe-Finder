@@ -96,6 +96,25 @@ function displayYouTubeVideos(videos) {
 
     recipesContainer.appendChild(backButton);
 }
+
+const modal = document.getElementById("myModal");
+const closeModal = document.querySelector(".close");
+const modalText = document.getElementById("modalText");
+
+closeModal.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function showModal(message) {
+    modalText.textContent = message;
+    modal.style.display = "block";
+}
 function saveRecipe(recipeData) {
   if (typeof(Storage) !== "undefined") {
       let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
@@ -105,12 +124,12 @@ function saveRecipe(recipeData) {
           savedRecipes.push(recipeData);
           localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
           console.log(savedRecipes)
-          alert('Recipe saved successfully!');
+          showModal('Recipe saved successfully!');
       } else {
-          alert('Recipe is already saved.');
+          showModal('Recipe is already saved.');
       }
   } else {
-      alert('Local storage is not supported by your browser.');
+      showModal('Local storage is not supported by your browser.');
   }
 }
 
@@ -188,3 +207,4 @@ homeLink.addEventListener('click', function(event) {
     event.preventDefault
     clearResults();
 })
+
