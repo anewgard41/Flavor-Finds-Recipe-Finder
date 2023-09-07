@@ -23,6 +23,19 @@ searchInput.addEventListener('keydown', function(event) {
     }
 });
 
+// Add the click option for filter by the items in sidebar
+function filterItems() {
+    const chickenFilter = document.getElementById('chickenFilter');
+    const items = itemList.getElementsByTagName('li');
+
+    // Loop through the items and hide/show based on the checkbox state
+    for (let i = 0; i < items.length; i++) {
+        const itemText = items[i].textContent.toLowerCase();
+        const containsChicken = itemText.includes('chicken');
+        items[i].style.display = chickenFilter.checked && containsChicken ? 'block' : 'none';
+    }
+}
+
 // Function to fetch recipes
 function fetchRecipes(query) {
     fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_Key}&from=0&to=10`)
@@ -122,7 +135,6 @@ function saveRecipe(recipeData) {
   }
 }
 
-
 function displaySavedRecipes(recipes) {
   recipesContainer.innerHTML = '';
   console.log(localStorage.getItem('savedRecipes'))
@@ -136,7 +148,6 @@ function displaySavedRecipes(recipes) {
         <a href="#" onclick="handleWatchVideoClick('${recipe.label}')" class="text-blue-500 hover:underline">Watch Video</a>
     </div>
 `;
-
           recipesContainer.innerHTML += recipeCard;
       }
   );
@@ -150,11 +161,9 @@ function isRecipeSaved(label) {
   }
 }
 
-
 // Check if there are saved recipes in local storage and retrieve them
 
 const recipeHistoryLink = document.getElementById('recipeHistoryLink');
-
 
 recipeHistoryLink.addEventListener('click', function(event) {
     event.preventDefault();
@@ -162,7 +171,6 @@ recipeHistoryLink.addEventListener('click', function(event) {
     console.log(localStorage.getItem('savedRecipes'))
     displaySavedRecipes(JSON.parse(localStorage.getItem('savedRecipes')));;
 });
-
 
 function toggleCheckbox(checkboxId) {
     const checkbox = document.getElementById(checkboxId);
