@@ -10,19 +10,15 @@
     font-family: BlinkMacSystemFont, segoe ui, Roboto, Oxygen-Sans, Ubuntu, Cantarell, helvetica neue, sans-serif;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 
 body {
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
-  grid-gap: 2rem;
-  justify-content: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+
 
 .btn {
     background-color: var(--primary);
@@ -55,41 +51,7 @@ body {
     background-color: var(--secondary);  
 }
     
-  .card {
-    overflow: hidden;
-    box-shadow: 0px 2px 20px var(--clr-gray200);
-    border-radius: var(--radius);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    cursor: pointer;
-    
-  
-    &__image {
-      height: 12rem;
-      width: 20%;
-      object-fit:scale-down;
-    }
-  
-    &__title {
-      padding: 1rem;
-    }
-  
-    &__description {
-      padding: 0 1rem;
-    }
-  
-  
-    &:hover {
-      transform: scale(1.02);
-    }
-  
-    &:hover &__btn {
-      background: var(--clr-primary);
-      color: white;
-    }
-  }
-  
+
 
 .btn {
     background-color: var(--primary);
@@ -99,9 +61,6 @@ body {
   background: var(--secondary);
 }
 
-/* .card img {
-    width: 250px;
-} */
 .recipe-card {
     border: 1px solid #ccc;
     padding: 20px;
@@ -126,20 +85,3 @@ body {
     margin-bottom: 10px;
 }
 
-.button-container {
-    display: flex;
-    justify-content: center;
-}
-
-.button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 0 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-.button:hover {
-    background-color: #0056b3;
