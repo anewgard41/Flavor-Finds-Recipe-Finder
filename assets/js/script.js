@@ -12,6 +12,10 @@ let lastFetchedRecipes = [];
 let savedRecipes = [];
 // Event Listener for search button click
 searchButton.addEventListener('click', function() {
+    const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
+    cardsToHide.forEach(card => {
+        card.style.display = 'none';
+    });
     const searchQuery = searchInput.value;
     changingHeader.innerHTML = "Showing Results for: '" + searchQuery + "'"
     fetchRecipes(searchQuery);
@@ -20,6 +24,10 @@ searchButton.addEventListener('click', function() {
 // Add an event listener for the "Enter" key press in the input field
 searchInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
+        const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
+        cardsToHide.forEach(card => {
+            card.style.display = 'none';
+        });
         const searchQuery = searchInput.value;
         fetchRecipes(searchQuery)
     }
@@ -208,6 +216,10 @@ recipeHistoryLink.addEventListener('click', function(event) {
     event.preventDefault();
     console.log(savedRecipes)
     console.log(localStorage.getItem('savedRecipes'))
+    const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
+    cardsToHide.forEach(card => {
+        card.style.display = 'block';
+    });
     displaySavedRecipes(JSON.parse(localStorage.getItem('savedRecipes')));;
 });
 
@@ -224,6 +236,10 @@ function clearResults() {
 
 const homeLink = document.getElementById('homeLink');
 homeLink.addEventListener('click', function(event) {
+    const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
+    cardsToHide.forEach(card => {
+        card.style.display = 'block';
+    });
     event.preventDefault
     clearResults();
 })
