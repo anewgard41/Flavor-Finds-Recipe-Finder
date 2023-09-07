@@ -15,6 +15,14 @@ searchButton.addEventListener('click', function() {
     fetchRecipes(searchQuery);
 });
 
+// Add an event listener for the "Enter" key press in the input field
+searchInput.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        const searchQuery = searchInput.value;
+        fetchRecipes(searchQuery)
+    }
+});
+
 // Function to fetch recipes
 function fetchRecipes(query) {
     fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_Key}&from=0&to=10`)
@@ -172,3 +180,18 @@ homeLink.addEventListener('click', function(event) {
     event.preventDefault
     clearResults();
 })
+
+// Alert box
+function showAlert() {
+    const alertBox = document.getElementById('recipeSavedAlert');
+    if (alertBox) {
+        alertBox.classList.remove('translate-y-full');
+    }
+}
+
+function dismissAlert() {
+    const alertBox = document.getElementById('recipeSavedAlert');
+    if (alertBox) {
+        alertBox.classList.add('translate-y-full');
+    }
+}
