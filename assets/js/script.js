@@ -161,6 +161,25 @@ function displayYouTubeVideos(videos) {
 
     recipesContainer.appendChild(backButton);
 }
+
+const modal = document.getElementById("myModal");
+const closeModal = document.querySelector(".close");
+const modalText = document.getElementById("modalText");
+
+closeModal.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function showModal(message) {
+    modalText.textContent = message;
+    modal.style.display = "block";
+}
 function saveRecipe(recipeData) {
   if (typeof(Storage) !== "undefined") {
       let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
@@ -170,12 +189,12 @@ function saveRecipe(recipeData) {
           savedRecipes.push(recipeData);
           localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
           console.log(savedRecipes)
-          alert('Recipe saved successfully!');
+          showModal('Recipe saved successfully!');
       } else {
-          alert('Recipe is already saved.');
+          showModal('Recipe is already saved.');
       }
   } else {
-      alert('Local storage is not supported by your browser.');
+      showModal('Local storage is not supported by your browser.');
   }
 }
 
@@ -198,6 +217,22 @@ function displaySavedRecipes(recipes) {
           recipesContainer.innerHTML += recipeCard;
       }
   );
+  const clearButton = document.createElement('button');
+    clearButton.textContent = 'Clear Saved Recipes';
+    clearButton.classList.add('btn', 'rounded', 'p-2', 'text-white', 'bg-red-500', 'hover:bg-red-600');
+  
+    // Add an event listener to the Clear button
+    clearButton.addEventListener('click', function () {
+      // Clear local storage for saved recipes
+      localStorage.removeItem('savedRecipes');
+      // Hide the Clear button
+      clearButton.style.display = 'none';
+      // Clear the recipesContainer
+      recipesContainer.innerHTML = '';
+    });
+  
+    // Append the Clear button to the recipesContainer
+    recipesContainer.appendChild(clearButton);
 }
 function isRecipeSaved(label) {
   if (typeof(Storage) !== "undefined") {
@@ -234,21 +269,4 @@ const homeLink = document.getElementById('homeLink');
 homeLink.addEventListener('click', function(event) {
     event.preventDefault
     clearResults();
-
 })
-
-// Alert box
-function showAlert() {
-    const alertBox = document.getElementById('recipeSavedAlert');
-    if (alertBox) {
-        alertBox.classList.remove('translate-y-full');
-    }
-}
-
-function dismissAlert() {
-    const alertBox = document.getElementById('recipeSavedAlert');
-    if (alertBox) {
-        alertBox.classList.add('translate-y-full');
-    }
-}
-    changingHeader.innerHTML = "Recommended/Popular Recipes!"
