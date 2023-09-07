@@ -23,17 +23,60 @@ searchInput.addEventListener('keydown', function(event) {
     }
 });
 
-// Add the click option for filter by the items in sidebar
-function filterItems() {
-    const chickenFilter = document.getElementById('chickenFilter');
-    const items = itemList.getElementsByTagName('li');
+// Function to search for "Chicken"
+function searchForChicken() {
+    const chickenQuery = 'Chicken';
+    searchInput.value = chickenQuery;
+    fetchRecipes(chickenQuery);
+}
 
-    // Loop through the items and hide/show based on the checkbox state
-    for (let i = 0; i < items.length; i++) {
-        const itemText = items[i].textContent.toLowerCase();
-        const containsChicken = itemText.includes('chicken');
-        items[i].style.display = chickenFilter.checked && containsChicken ? 'block' : 'none';
-    }
+// Function to search for "Pork"
+function searchForPork() {
+    const porkQuery = 'Pork';
+    searchInput.value = porkQuery;
+    fetchRecipes(porkQuery);
+}
+
+// Function to search for "Beef"
+function searchForBeef() {
+    const beefQuery = 'Beef';
+    searchInput.value = beefQuery;
+    fetchRecipes(beefQuery);
+}
+
+// Function to search for "Seafood"
+function searchForSeafood() {
+    const seafoodQuery = 'Seafood';
+    searchInput.value = seafoodQuery;
+    fetchRecipes(seafoodQuery);
+}
+
+// Function to search for "Pasta"
+function searchForPasta() {
+    const pastaQuery = 'Pasta';
+    searchInput.value = pastaQuery;
+    fetchRecipes(pastaQuery);
+}
+
+// Function to search for "Fruit"
+function searchForFruit() {
+    const fruitQuery = 'Fruit';
+    searchInput.value = fruitQuery;
+    fetchRecipes(fruitQuery);
+}
+
+// Function to search for "Vegetables"
+function searchForVegetables() {
+    const vegetablesQuery = 'Vegetables';
+    searchInput.value = vegetablesQuery;
+    fetchRecipes(vegetablesQueryQuery);
+}
+
+// Function to search for "Pizza"
+function searchForPizza() {
+    const pizzaQuery = 'Pizza';
+    searchInput.value = pizzaQuery;
+    fetchRecipes(pizzaQuery);
 }
 
 // Function to fetch recipes
