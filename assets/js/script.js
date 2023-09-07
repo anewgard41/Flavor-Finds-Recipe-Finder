@@ -227,3 +227,4 @@ function dismissAlert() {
     }
 }
     changingHeader.innerHTML = "Recommended/Popular Recipes!"
+    
