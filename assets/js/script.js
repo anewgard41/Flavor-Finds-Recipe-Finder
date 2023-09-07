@@ -71,7 +71,6 @@ function displayRecipes(recipes) {
     });
 }
 
-
 function handleWatchVideoClick(recipeLabel) {
     fetchYouTubeVideos(recipeLabel);
 }
@@ -148,6 +147,7 @@ function displaySavedRecipes(recipes) {
         <a href="#" onclick="handleWatchVideoClick('${recipe.label}')" class="text-blue-500 hover:underline">Watch Video</a>
     </div>
 `;
+
           recipesContainer.innerHTML += recipeCard;
       }
   );
