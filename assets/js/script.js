@@ -2,6 +2,7 @@
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 const recipesContainer = document.getElementById('recipesContainer');
+const changingHeader = document.getElementById('changingHeader');
 // localStorage.clear();
 let searchQuery = "";
 const APP_Key = '9ddc8cb8ba63145367540ecdb0325eca';
@@ -12,6 +13,7 @@ let savedRecipes = [];
 // Event Listener for search button click
 searchButton.addEventListener('click', function() {
     const searchQuery = searchInput.value;
+    changingHeader.innerHTML = "Showing Results for: '" + searchQuery + "'"
     fetchRecipes(searchQuery);
 });
 
@@ -114,7 +116,6 @@ function displayRecipes(recipes) {
     });
 }
 
-
 function handleWatchVideoClick(recipeLabel) {
     fetchYouTubeVideos(recipeLabel);
 }
@@ -180,6 +181,8 @@ function saveRecipe(recipeData) {
 
 function displaySavedRecipes(recipes) {
   recipesContainer.innerHTML = '';
+  changingHeader.innerHTML = "";
+  changingHeader.innerHTML = "Favorite Saved Recipes!"
   console.log(localStorage.getItem('savedRecipes'))
   console.log(recipes)
   recipes.forEach(recipe => {
@@ -191,6 +194,7 @@ function displaySavedRecipes(recipes) {
         <a href="#" onclick="handleWatchVideoClick('${recipe.label}')" class="text-blue-500 hover:underline">Watch Video</a>
     </div>
 `;
+
           recipesContainer.innerHTML += recipeCard;
       }
   );
@@ -230,6 +234,7 @@ const homeLink = document.getElementById('homeLink');
 homeLink.addEventListener('click', function(event) {
     event.preventDefault
     clearResults();
+
 })
 
 // Alert box
@@ -246,3 +251,4 @@ function dismissAlert() {
         alertBox.classList.add('translate-y-full');
     }
 }
+    changingHeader.innerHTML = "Recommended/Popular Recipes!"
