@@ -12,6 +12,10 @@ let lastFetchedRecipes = [];
 let savedRecipes = [];
 // Event Listener for search button click
 searchButton.addEventListener('click', function() {
+    const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
+    cardsToHide.forEach(card => {
+        card.style.display = 'none';
+    });
     const searchQuery = searchInput.value;
     changingHeader.innerHTML = "Showing Results for: '" + searchQuery + "'"
     fetchRecipes(searchQuery);
@@ -20,22 +24,69 @@ searchButton.addEventListener('click', function() {
 // Add an event listener for the "Enter" key press in the input field
 searchInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
+        const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
+        cardsToHide.forEach(card => {
+            card.style.display = 'none';
+        });
         const searchQuery = searchInput.value;
         fetchRecipes(searchQuery)
     }
 });
 
-// Add the click option for filter by the items in sidebar
-function filterItems() {
-    const chickenFilter = document.getElementById('chickenFilter');
-    const items = itemList.getElementsByTagName('li');
+// Function to search for "Chicken"
+function searchForChicken() {
+    const chickenQuery = 'Chicken';
+    searchInput.value = chickenQuery;
+    fetchRecipes(chickenQuery);
+}
 
-    // Loop through the items and hide/show based on the checkbox state
-    for (let i = 0; i < items.length; i++) {
-        const itemText = items[i].textContent.toLowerCase();
-        const containsChicken = itemText.includes('chicken');
-        items[i].style.display = chickenFilter.checked && containsChicken ? 'block' : 'none';
-    }
+// Function to search for "Pork"
+function searchForPork() {
+    const porkQuery = 'Pork';
+    searchInput.value = porkQuery;
+    fetchRecipes(porkQuery);
+}
+
+// Function to search for "Beef"
+function searchForBeef() {
+    const beefQuery = 'Beef';
+    searchInput.value = beefQuery;
+    fetchRecipes(beefQuery);
+}
+
+// Function to search for "Seafood"
+function searchForSeafood() {
+    const seafoodQuery = 'Seafood';
+    searchInput.value = seafoodQuery;
+    fetchRecipes(seafoodQuery);
+}
+
+// Function to search for "Pasta"
+function searchForPasta() {
+    const pastaQuery = 'Pasta';
+    searchInput.value = pastaQuery;
+    fetchRecipes(pastaQuery);
+}
+
+// Function to search for "Fruit"
+function searchForFruit() {
+    const fruitQuery = 'Fruit';
+    searchInput.value = fruitQuery;
+    fetchRecipes(fruitQuery);
+}
+
+// Function to search for "Vegetables"
+function searchForVegetables() {
+    const vegetablesQuery = 'Vegetables';
+    searchInput.value = vegetablesQuery;
+    fetchRecipes(vegetablesQueryQuery);
+}
+
+// Function to search for "Pizza"
+function searchForPizza() {
+    const pizzaQuery = 'Pizza';
+    searchInput.value = pizzaQuery;
+    fetchRecipes(pizzaQuery);
 }
 
 // Function to fetch recipes
@@ -120,6 +171,25 @@ function displayYouTubeVideos(videos) {
 
     recipesContainer.appendChild(backButton);
 }
+
+const modal = document.getElementById("myModal");
+const closeModal = document.querySelector(".close");
+const modalText = document.getElementById("modalText");
+
+closeModal.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function showModal(message) {
+    modalText.textContent = message;
+    modal.style.display = "block";
+}
 function saveRecipe(recipeData) {
   if (typeof(Storage) !== "undefined") {
       let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
@@ -129,12 +199,12 @@ function saveRecipe(recipeData) {
           savedRecipes.push(recipeData);
           localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
           console.log(savedRecipes)
-          alert('Recipe saved successfully!');
+          showModal('Recipe saved successfully!');
       } else {
-          alert('Recipe is already saved.');
+          showModal('Recipe is already saved.');
       }
   } else {
-      alert('Local storage is not supported by your browser.');
+      showModal('Local storage is not supported by your browser.');
   }
 }
 
@@ -191,6 +261,10 @@ recipeHistoryLink.addEventListener('click', function(event) {
     event.preventDefault();
     console.log(savedRecipes)
     console.log(localStorage.getItem('savedRecipes'))
+    const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
+    cardsToHide.forEach(card => {
+        card.style.display = 'block';
+    });
     displaySavedRecipes(JSON.parse(localStorage.getItem('savedRecipes')));;
 });
 
@@ -207,24 +281,9 @@ function clearResults() {
 
 const homeLink = document.getElementById('homeLink');
 homeLink.addEventListener('click', function(event) {
+    const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
+    cardsToHide.forEach(card => {
+        card.style.display = 'block';
+    });
     event.preventDefault
     clearResults();
-
-})
-
-// Alert box
-function showAlert() {
-    const alertBox = document.getElementById('recipeSavedAlert');
-    if (alertBox) {
-        alertBox.classList.remove('translate-y-full');
-    }
-}
-
-function dismissAlert() {
-    const alertBox = document.getElementById('recipeSavedAlert');
-    if (alertBox) {
-        alertBox.classList.add('translate-y-full');
-    }
-}
-    changingHeader.innerHTML = "Recommended/Popular Recipes!"
-    
