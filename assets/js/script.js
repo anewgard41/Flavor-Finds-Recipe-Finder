@@ -12,10 +12,6 @@ let lastFetchedRecipes = [];
 let savedRecipes = [];
 // Event Listener for search button click
 searchButton.addEventListener('click', function() {
-    const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
-    cardsToHide.forEach(card => {
-        card.style.display = 'none';
-    });
     const searchQuery = searchInput.value;
     changingHeader.innerHTML = "Showing Results for: '" + searchQuery + "'"
     fetchRecipes(searchQuery);
@@ -24,69 +20,22 @@ searchButton.addEventListener('click', function() {
 // Add an event listener for the "Enter" key press in the input field
 searchInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
-        const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
-        cardsToHide.forEach(card => {
-            card.style.display = 'none';
-        });
         const searchQuery = searchInput.value;
         fetchRecipes(searchQuery)
     }
 });
 
-// Function to search for "Chicken"
-function searchForChicken() {
-    const chickenQuery = 'Chicken';
-    searchInput.value = chickenQuery;
-    fetchRecipes(chickenQuery);
-}
+// Add the click option for filter by the items in sidebar
+function filterItems() {
+    const chickenFilter = document.getElementById('chickenFilter');
+    const items = itemList.getElementsByTagName('li');
 
-// Function to search for "Pork"
-function searchForPork() {
-    const porkQuery = 'Pork';
-    searchInput.value = porkQuery;
-    fetchRecipes(porkQuery);
-}
-
-// Function to search for "Beef"
-function searchForBeef() {
-    const beefQuery = 'Beef';
-    searchInput.value = beefQuery;
-    fetchRecipes(beefQuery);
-}
-
-// Function to search for "Seafood"
-function searchForSeafood() {
-    const seafoodQuery = 'Seafood';
-    searchInput.value = seafoodQuery;
-    fetchRecipes(seafoodQuery);
-}
-
-// Function to search for "Pasta"
-function searchForPasta() {
-    const pastaQuery = 'Pasta';
-    searchInput.value = pastaQuery;
-    fetchRecipes(pastaQuery);
-}
-
-// Function to search for "Fruit"
-function searchForFruit() {
-    const fruitQuery = 'Fruit';
-    searchInput.value = fruitQuery;
-    fetchRecipes(fruitQuery);
-}
-
-// Function to search for "Vegetables"
-function searchForVegetables() {
-    const vegetablesQuery = 'Vegetables';
-    searchInput.value = vegetablesQuery;
-    fetchRecipes(vegetablesQueryQuery);
-}
-
-// Function to search for "Pizza"
-function searchForPizza() {
-    const pizzaQuery = 'Pizza';
-    searchInput.value = pizzaQuery;
-    fetchRecipes(pizzaQuery);
+    // Loop through the items and hide/show based on the checkbox state
+    for (let i = 0; i < items.length; i++) {
+        const itemText = items[i].textContent.toLowerCase();
+        const containsChicken = itemText.includes('chicken');
+        items[i].style.display = chickenFilter.checked && containsChicken ? 'block' : 'none';
+    }
 }
 
 // Function to fetch recipes
@@ -106,17 +55,16 @@ function displayRecipes(recipes) {
         const recipeData = recipe.recipe;
 
         const recipeCard = `
-        <div class="bg-white shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
-            <img src="${recipeData.image}" alt="${recipeData.label}" class="w-full h-40 rounded-md">
-            <h2 class="text-lg font-bold my-2">${recipeData.label}</h2>
-            <a href="${recipeData.url}" target="_blank" class="text-blue-500 hover:underline">View Recipe</a>
-            <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="text-blue-500 hover:underline">Watch Video</a>
-            <button class="bg-custom-orange text-white rounded-full p-2 hover:bg-custom-hover-orange mt-2 save-recipe-button"
-            onclick="saveRecipe(JSON.parse(this.getAttribute('data-recipe')))">
-              
-              <i class="far fa-heart">&#11088;</i>
-              </button>
-
+        <div class="card flex flex-col rounded space-y-2 bg-white rounded p-2 m-2 w-72 shadow-xl">
+            <div class="card__body mx-auto rounded bg-white p-2 m-2 flex-1">
+            <img src="${recipeData.image}" alt="${recipeData.label}" class="mx-auto card__image">
+            <h2 class="text-2xl font-semibold my-2">${recipeData.label}</h2>
+            </div>
+            <div class = "mx-auto mt-auto">
+            <a href="${recipeData.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
+            <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
+            <i class="fa-regular fa-star"></i>
+            </div>
         </div>
     `;
 
@@ -150,8 +98,9 @@ function displayYouTubeVideos(videos) {
         const videoUrl = `https://www.youtube.com/watch?v=${video.id.videoId}`;
 
         const videoCard = `
-            <div class="bg-white shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
-                <img src="${videoThumbnail}" alt="${videoTitle}" class="w-full h-40 rounded-md">
+            <div class="bg-white flex flex-col shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
+            <div class = "flex-1">     
+            <img src="${videoThumbnail}" alt="${videoTitle}" class="w-full h-40 rounded-md">
                 <h2 class="text-lg font-bold my-2">${videoTitle}</h2>
                 </div>
                 <a href="${videoUrl}" target="_blank" class="mt-auto self-start inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Go to Video</a>
@@ -171,25 +120,6 @@ function displayYouTubeVideos(videos) {
 
     recipesContainer.appendChild(backButton);
 }
-
-const modal = document.getElementById("myModal");
-const closeModal = document.querySelector(".close");
-const modalText = document.getElementById("modalText");
-
-closeModal.onclick = function() {
-    modal.style.display = "none";
-}
-
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
-function showModal(message) {
-    modalText.textContent = message;
-    modal.style.display = "block";
-}
 function saveRecipe(recipeData) {
   if (typeof(Storage) !== "undefined") {
       let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
@@ -199,12 +129,12 @@ function saveRecipe(recipeData) {
           savedRecipes.push(recipeData);
           localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
           console.log(savedRecipes)
-          showModal('Recipe saved successfully!');
+          alert('Recipe saved successfully!');
       } else {
-          showModal('Recipe is already saved.');
+          alert('Recipe is already saved.');
       }
   } else {
-      showModal('Local storage is not supported by your browser.');
+      alert('Local storage is not supported by your browser.');
   }
 }
 
@@ -261,10 +191,6 @@ recipeHistoryLink.addEventListener('click', function(event) {
     event.preventDefault();
     console.log(savedRecipes)
     console.log(localStorage.getItem('savedRecipes'))
-    const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
-    cardsToHide.forEach(card => {
-        card.style.display = 'block';
-    });
     displaySavedRecipes(JSON.parse(localStorage.getItem('savedRecipes')));;
 });
 
@@ -281,10 +207,24 @@ function clearResults() {
 
 const homeLink = document.getElementById('homeLink');
 homeLink.addEventListener('click', function(event) {
-    const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
-    cardsToHide.forEach(card => {
-        card.style.display = 'block';
-    });
     event.preventDefault
     clearResults();
+
 })
+
+// Alert box
+function showAlert() {
+    const alertBox = document.getElementById('recipeSavedAlert');
+    if (alertBox) {
+        alertBox.classList.remove('translate-y-full');
+    }
+}
+
+function dismissAlert() {
+    const alertBox = document.getElementById('recipeSavedAlert');
+    if (alertBox) {
+        alertBox.classList.add('translate-y-full');
+    }
+}
+    changingHeader.innerHTML = "Recommended/Popular Recipes!"
+    

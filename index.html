@@ -2,34 +2,37 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Tailwind link -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Font awesome link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./assets/css/reset.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Recipe Finder</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind link -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Font awesome link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>Recipe Finder</title>
 </head>
 
 <body class="bg-gray-100">
     <!-- Navigation Bar -->
     <nav class="bg-blue-500 p-4 flex">
-        <div class="container mx-auto">
-            <div class="container mx-auto flex items-center justify-between flex-wrap">
-                <!-- Logo Image -->
-                <img src="./assets/images/flavorful finds.png" alt="FlavorfulFinds Logo" class=" my-2 h-16">    
-             <!-- Search Box -->
-             <div class="flex my-4 items-center space-x-4">
-                <input id="searchInput" type="text" placeholder="Search Recipes" class="bg-white rounded p-2 focus:outline-none">
-                <button id="searchButton" class="btn text-white rounded p-2">Search</button>
-              </div>
-              <!-- Navigation Links or Other Elements -->
-              <div class="space-x-4 my-2">
-                <a href="#" id="homeLink" class="btn rounded p-2 text-white hover:underline">Home</a>
-                <a href="#" class="btn rounded p-2 text-white hover:underline" id="recipeHistoryLink">Recipe History</a>
-              </div>
+      <div class="container mx-auto">
+        <div class="container mx-auto flex items-center justify-between flex-wrap">
+          <!-- Logo Image -->
+          <img src="./assets/images/flavorful finds.png" alt="FlavorfulFinds Logo" class=" my-2 h-16">
+          <!-- Search Box -->
+          <div class="flex my-4 items-center space-x-4">
+            <input id="searchInput" type="text" placeholder="Search Recipes"
+              class="bg-white rounded p-2 focus:outline-none">
+            <button id="searchButton" class="btn text-white rounded p-2">Search</button>
+          </div>
+          <!-- Navigation Links or Other Elements -->
+          <div class="space-x-4 my-2">
+            <a href="#" id="homeLink" class="btn rounded p-2 text-white hover:underline">Home</a>
+            <a href="#" class="btn rounded p-2 text-white hover:underline" id="recipeHistoryLink">Recipe History</a>
+          </div>
         </div>
     </nav>
 
@@ -45,161 +48,56 @@
       </div>
   </div>
 
-      <div id="changingHeader" class="p-2">Recommended/Popular Recipes!</div>
-      <div id="recipesContainer" class= "container mx-auto mt-10"></div>
+      <div id="changingHeader" class="p-2"></div>
+                   
+  <!-- Recipe card section -->
+  <div id="recipesContainer" class="flex container mx-auto mt-8 flex-wrap justify-center lg:justify-start">
 
-     <!-- Recipe Card 1 -Lyubomir
-    <div class="flex container mx-auto mt-8 flex-wrap">
-      <div class="recipe-card">
-        <h1 class="recipe-title"></h1>
-        <img class="recipe-image" src="" alt="">
-        <p class="recipe-description">
-      
-        </p>
-        <div class="button-container">
-            <button class="button">View Recipe</button>
-            <button class="button">Watch Video</button>
-        </div>
-    </div> -->
-    
-      <div class="flex container mx-auto mt-8 flex-wrap justify-start">
-        <!-- Sidebar for Content Filtering -->
-        <section class>
-          <div class="flex flex-wrap justify-start rounded p-2">
-        <aside class="rounded bg-secondary m-4 p-4 self-start">
-            <h2 class="text-lg font-semibold mb-2">Quick Search by Category</h2>
-            <ul class="space-x-2 space-y-2 sm:block flex flex-wrap justify-evenly">
-              <li class="flex ml-2 mt-2">
-                <!-- Checkbox -->
-                <input type="checkbox" class="mr-2" id="checkbox1">
-                <!-- Hoverable Text -->
-                <span class="hoverable-item" onClick="searchForChicken()" onclick="toggleCheckbox('checkbox1')">Chicken</span>
-              </li>
-              <li class="flex">
-                <input type="checkbox" class="mr-2" id="checkbox2">
-                <span class="hoverable-item" onClick="searchForPork()" onclick="toggleCheckbox('checkbox2')">Pork</span>
-              </li>
-              <li class="flex">
-                <input type="checkbox" class="mr-2" id="checkbox3">
-                <span class="hoverable-item" onClick="searchForBeef()" onclick="toggleCheckbox('checkbox3')">Beef</span>
-              </li>
-              <li class="flex">
-                <input type="checkbox" class="mr-2" id="checkbox4">
-                <span class="hoverable-item" onClick="searchForSeafood()" onclick="toggleCheckbox('checkbox4')">Seafood</span>
-              </li>
-              <li class="flex">
-                <input type="checkbox" class="mr-2" id="checkbox5">
-                <span class="hoverable-item" onClick="searchForPasta()" onclick="toggleCheckbox('checkbox5')">Pasta</span>
-              </li>
-              <li class="flex">
-                <input type="checkbox" class="mr-2" id="checkbox6">
-                <span class="hoverable-item" onClick="searchForFruit()" onclick="toggleCheckbox('checkbox6')">Fruit</span>
-              </li>
-                <li class="flex">
-                <input type="checkbox" class="mr-2" id="checkbox7">
-              <span class="hoverable-item" onClick="searchForVegetables()" onclick="toggleCheckbox('checkbox7')">Vegetables</span>
-              </li>
-                <li class="flex">
-                <input type="checkbox" class="mr-2" id="checkbox8">
-              <span class="hoverable-item" onClick="searchForPizza()" onclick="toggleCheckbox('checkbox8')">Pizza</span>
-              </li>
-            </ul>
-            
-        </aside>
-
-        <!-- Recipe Cards Section -->
-              <div class="card rounded relative space-y-2 bg-white rounded p-2 m-2 w-60" data-category="baked-cod">
-                <div class="card__body mx-auto rounded bg-white p-2 m-2">
-                  </button>
-                  <img
-                    src="https://images.unsplash.com/photo-1529928520614-7c76e2d99740?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
-                    alt="" class="mx-auto card__image">
-                  <h2 class="p-2 text-lg font-semibold">Baked Cod with Vegetables</h2>
-                  <p class="p-2">Baked Cod with Vegetables. 30 minute meal!</p>
-                </div>
-                <div class="mx-auto">
-                  <button
-                    class="h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline hover:bg-indigo-800">View
-                    Recipe</button>
-                  <a class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline hover:bg-indigo-800"
-                    href="#">Link</a>
-                  <i class="fa-regular fa-star"></i> <!-- Use Font Awesome class for star icon -->
-                </div>
-              </div>
-
-              <div class="card rounded relative space-y-2 bg-white rounded p-2 m-2 w-60" data-category="baked-cod">
-                <div class="card__body mx-auto rounded bg-white p-2">
-                  </button>
-                  <img
-                    src="https://images.unsplash.com/photo-1529928520614-7c76e2d99740?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
-                    alt="" class="mx-auto card__image">
-                  <h2 class="p-2 text-lg font-semibold">Baked Cod with Vegetables</h2>
-                  <p class="p-2">Baked Cod with Vegetables. 30 minute meal!</p>
-                </div>
-                <div class="mx-auto">
-                  <button
-                    class="h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline hover:bg-indigo-800">View
-                    Recipe</button>
-                  <a class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline hover:bg-indigo-800"
-                    href="#">Link</a>
-                  <i class="fa-regular fa-star"></i> <!-- Use Font Awesome class for star icon -->
-                </div>
-              </div>
-
-              <div class="card rounded relative space-y-2 bg-white rounded p-2 m-2 w-60" data-category="baked-cod">
-                <div class="card__body mx-auto rounded bg-white p-2">
-                  </button>
-                  <img
-                    src="https://images.unsplash.com/photo-1529928520614-7c76e2d99740?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
-                    alt="" class="mx-auto card__image">
-                  <h2 class="p-2 text-lg font-semibold">Baked Cod with Vegetables</h2>
-                  <p class="p-2">Baked Cod with Vegetables. 30 minute meal!</p>
-                </div>
-                <div class="mx-auto">
-                  <button
-                    class="h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline hover:bg-indigo-800">View
-                    Recipe</button>
-                  <a class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline hover:bg-indigo-800"
-                    href="#">Link</a>
-                  <i class="fa-regular fa-star"></i> <!-- Use Font Awesome class for star icon -->
-                </div>
-              </div>
-          </div>
-        </section>
-
-              <div class="card rounded relative space-y-2 bg-white rounded p-2 m-2 w-60"  data-category="baked-cod">
-                <div class="card__body mx-auto rounded bg-white p-2">
-                  </button>
-                  <img
-                    src="https://images.unsplash.com/photo-1529928520614-7c76e2d99740?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
-                    alt="" class="mx-auto card__image">
-                  <h2 class="p-2 text-lg font-semibold">Baked Cod with Vegetables</h2>
-                  <p class="p-2">Baked Cod with Vegetables. 30 minute meal!</p>
-                </div>
-                <div class="mx-auto">
-                  <button
-                    class="h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline hover:bg-indigo-800">View
-                    Recipe</button>
-                  <a class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline hover:bg-indigo-800"
-                    href="#">Link</a>
-                  <i class="fa-regular fa-star"></i> <!-- Use Font Awesome class for star icon -->
-                </div>
-              </div>
-          </div>
-        </section>
-    </div>
-
-    <div id="myModal" class="modal fixed inset-0 flex items-center justify-center p-4 hidden">
-      <div class="modal-content bg-white rounded shadow-xl w-3/4 md:w-1/2 lg:w-1/3 relative">
-          <span class="close absolute top-2 right-2 cursor-pointer">&times;</span>
-          <p id="modalText" class="text-center text-xl p-4">Some text in the Modal..</p>
-      </div>
-  </div>  
+    <!-- Sidebar for Content Filtering -->
   
-    <!-- Footer -->
-    <footer class="relative bottom-0 w-full bg-gray-300 p-4">
-        <p class="text-center text-gray-600">© 2023 FlavorfulFinds. All rights reserved.</p>
-    </footer>
+    <aside class="bg-secondary m-4 p-4 rounded">
+      <h2 class="text-lg font-semibold mb-2">Filter by Category</h2>
+      <ul class="space-x-2 space-y-2 md:block md:shrink-0 sm:block flex flex-wrap justify-evenly">
+  
+        <li class="flex ml-2 mt-2">
+          <!-- Checkbox -->
+          <input type="checkbox" class="mr-2" id="checkbox1">
+          <!-- Hoverable Text -->
+          <span class="hoverable-item" onclick="toggleCheckbox('checkbox1')">Chicken</span>
+        </li>
+        <li class="flex">
+          <input type="checkbox" class="mr-2" id="checkbox2">
+          <span class="hoverable-item" onclick="toggleCheckbox('checkbox2')">Pork</span>
+        </li>
+        <li class="flex">
+          <input type="checkbox" class="mr-2" id="checkbox3">
+          <span class="hoverable-item" onclick="toggleCheckbox('checkbox3')">Beef</span>
+        </li>
+        <li class="flex">
+          <input type="checkbox" class="mr-2" id="checkbox4">
+          <span class="hoverable-item" onclick="toggleCheckbox('checkbox4')">Seafood</span>
+        </li>
+        <li class="flex">
+          <input type="checkbox" class="mr-2" id="checkbox5">
+          <span class="hoverable-item" onclick="toggleCheckbox('checkbox5')">Pasta</span>
+        </li>
+        <li class="flex">
+          <input type="checkbox" class="mr-2" id="checkbox6">
+          <span class="hoverable-item" onclick="toggleCheckbox('checkbox6')">Fruit</span>
+        </li>
+        <li class="flex">
+          <input type="checkbox" class="mr-2" id="checkbox7">
+          <span class="hoverable-item" onclick="toggleCheckbox('checkbox7')">Vegetables</span>
+        </li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-300 p-4 mt-auto">
+    <p class="text-center text-gray-600">© 2023 FlavorfulFinds. All rights reserved.</p>
+  </footer>
+
   <script src="assets/js/script.js"></script>
 
 </body>
