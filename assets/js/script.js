@@ -12,10 +12,6 @@ let lastFetchedRecipes = [];
 let savedRecipes = [];
 // Event Listener for search button click
 searchButton.addEventListener('click', function() {
-    const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
-    cardsToHide.forEach(card => {
-        card.style.display = 'none';
-    });
     const searchQuery = searchInput.value;
     changingHeader.innerHTML = "Showing Results for: '" + searchQuery + "'"
     fetchRecipes(searchQuery);
@@ -24,10 +20,6 @@ searchButton.addEventListener('click', function() {
 // Add an event listener for the "Enter" key press in the input field
 searchInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
-        const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
-        cardsToHide.forEach(card => {
-            card.style.display = 'none';
-        });
         const searchQuery = searchInput.value;
         fetchRecipes(searchQuery)
     }
@@ -89,6 +81,12 @@ function searchForPizza() {
     fetchRecipes(pizzaQuery);
 }
 
+// Add the click option for filter by the items in sidebar
+function filterItems() {
+    const chickenFilter = document.getElementById('chickenFilter');
+    const items = itemList.getElementsByTagName('li');
+}
+
 // Function to fetch recipes
 function fetchRecipes(query) {
     fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_Key}&from=0&to=10`)
@@ -106,17 +104,19 @@ function displayRecipes(recipes) {
         const recipeData = recipe.recipe;
 
         const recipeCard = `
-        <div class="bg-white shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
-            <img src="${recipeData.image}" alt="${recipeData.label}" class="w-full h-40 rounded-md">
-            <h2 class="text-lg font-bold my-2">${recipeData.label}</h2>
-            <a href="${recipeData.url}" target="_blank" class="text-blue-500 hover:underline">View Recipe</a>
-            <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="text-blue-500 hover:underline">Watch Video</a>
-            <button class="bg-custom-orange text-white rounded-full p-2 hover:bg-custom-hover-orange mt-2 save-recipe-button"
-            data-recipe='${JSON.stringify(recipeData)}' onclick="saveRecipe(JSON.parse(this.getAttribute('data-recipe')))">
-              
-              <i class="far fa-heart">&#11088;</i>
+        <div class="card flex flex-col rounded space-y-2 bg-white rounded p-2 m-2 w-72 shadow-xl">
+            <div class="card__body mx-auto rounded bg-white p-2 m-2 flex-1">
+            <img src="${recipeData.image}" alt="${recipeData.label}" class="mx-auto card__image">
+            <h2 class="text-2xl font-semibold my-2">${recipeData.label}</h2>
+            </div>
+            <div class = "mx-auto mt-auto">
+            <a href="${recipeData.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
+            <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
+            <button class="save-recipe-button"
+            onclick="saveRecipe(JSON.parse(this.getAttribute('data-recipe')))">
+              <i class="far fa-heart"></i>
               </button>
-
+            </div>
         </div>
     `;
 
@@ -150,10 +150,12 @@ function displayYouTubeVideos(videos) {
         const videoUrl = `https://www.youtube.com/watch?v=${video.id.videoId}`;
 
         const videoCard = `
-            <div class="bg-white shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
-                <img src="${videoThumbnail}" alt="${videoTitle}" class="w-full h-40 rounded-md">
+            <div class="bg-white flex flex-col shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
+            <div class = "flex-1">     
+            <img src="${videoThumbnail}" alt="${videoTitle}" class="w-full h-40 rounded-md">
                 <h2 class="text-lg font-bold my-2">${videoTitle}</h2>
-                <a href="${videoUrl}" target="_blank" class="text-blue-500 hover:underline">Go to Video</a>
+                </div>
+                <a href="${videoUrl}" target="_blank" class="mt-auto self-start inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Go to Video</a>
             </div>
         `;
 
@@ -163,6 +165,7 @@ function displayYouTubeVideos(videos) {
     // Add the back button after displaying YouTube videos
     const backButton = document.createElement('button');
     backButton.textContent = "Go Back to Recipes";
+    backButton.classList.add("mt-auto", "mb-auto", "self-start", "items-center", "h-8", "px-4", "m-2", "text-sm", "transition-colors", "duration-150", "btn", "rounded-lg", "focus:shadow-outline");
     backButton.onclick = function() {
         displayRecipes(lastFetchedRecipes); // Redisplay previous recipes
     };
@@ -188,6 +191,8 @@ function showModal(message) {
     modalText.textContent = message;
     modal.style.display = "block";
 }
+
+
 function saveRecipe(recipeData) {
   if (typeof(Storage) !== "undefined") {
       let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
@@ -199,10 +204,10 @@ function saveRecipe(recipeData) {
           console.log(savedRecipes)
           showModal('Recipe saved successfully!');
       } else {
-          showModal('Recipe is already saved.');
+        showModal('Recipe is already saved.');
       }
   } else {
-      showModal('Local storage is not supported by your browser.');
+    showModal('Local storage is not supported by your browser.');
   }
 }
 
@@ -214,12 +219,16 @@ function displaySavedRecipes(recipes) {
   console.log(recipes)
   recipes.forEach(recipe => {
     const recipeCard = `
-    <div class="bg-white shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
-        <img src="${recipe.image}" alt="${recipe.label}" class="w-full h-40 rounded-md">
-        <h2 class="text-lg font-bold my-2">${recipe.label}</h2>
-        <a href="${recipe.url}" target="_blank" class="text-blue-500 hover:underline">View Recipe</a>
-        <a href="#" onclick="handleWatchVideoClick('${recipe.label}')" class="text-blue-500 hover:underline">Watch Video</a>
-    </div>
+    <div class="card flex flex-col rounded space-y-2 bg-white rounded p-2 m-2 w-72 shadow-xl">
+            <div class="card__body mx-auto rounded bg-white p-2 m-2 flex-1">
+            <img src="${recipeData.image}" alt="${recipeData.label}" class="mx-auto card__image">
+            <h2 class="text-2xl font-semibold my-2">${recipeData.label}</h2>
+            </div>
+            <div class = "mx-auto mt-auto">
+            <a href="${recipeData.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
+            <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
+            </div>
+        </div>
 `;
 
           recipesContainer.innerHTML += recipeCard;
@@ -227,7 +236,7 @@ function displaySavedRecipes(recipes) {
   );
   const clearButton = document.createElement('button');
     clearButton.textContent = 'Clear Saved Recipes';
-    clearButton.classList.add('btn', 'rounded', 'p-2', 'text-white', 'bg-red-500', 'hover:bg-red-600');
+    clearButton.classList.add("mt-auto", "mb-auto", "self-start", "items-center", "h-8", "px-4", "m-2", "text-sm", "transition-colors", "duration-150", "btn", "rounded-lg", "focus:shadow-outline");
   
     // Add an event listener to the Clear button
     clearButton.addEventListener('click', function () {
@@ -259,10 +268,6 @@ recipeHistoryLink.addEventListener('click', function(event) {
     event.preventDefault();
     console.log(savedRecipes)
     console.log(localStorage.getItem('savedRecipes'))
-    const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
-    cardsToHide.forEach(card => {
-        card.style.display = 'block';
-    });
     displaySavedRecipes(JSON.parse(localStorage.getItem('savedRecipes')));;
 });
 
@@ -279,10 +284,9 @@ function clearResults() {
 
 const homeLink = document.getElementById('homeLink');
 homeLink.addEventListener('click', function(event) {
-    const cardsToHide = document.querySelectorAll('[data-category="baked-cod"]');
-    cardsToHide.forEach(card => {
-        card.style.display = 'block';
-    });
     event.preventDefault
     clearResults();
+
 })
+
+
