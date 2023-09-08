@@ -103,7 +103,7 @@ function displayYouTubeVideos(videos) {
             <img src="${videoThumbnail}" alt="${videoTitle}" class="w-full h-40 rounded-md">
                 <h2 class="text-lg font-bold my-2">${videoTitle}</h2>
                 </div>
-                <a href="${videoUrl}" target="_blank" class="mt-auto self-start inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outlin">Go to Video</a>
+                <a href="${videoUrl}" target="_blank" class="mt-auto self-start inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Go to Video</a>
             </div>
         `;
 
@@ -113,7 +113,7 @@ function displayYouTubeVideos(videos) {
     // Add the back button after displaying YouTube videos
     const backButton = document.createElement('button');
     backButton.textContent = "Go Back to Recipes";
-    backButton.setAttribute = ("class", "btn");
+    backButton.classList.add("mt-auto", "mb-auto", "self-start", "items-center", "h-8", "px-4", "m-2", "text-sm", "transition-colors", "duration-150", "btn", "rounded-lg", "focus:shadow-outline",);
     backButton.onclick = function() {
         displayRecipes(lastFetchedRecipes); // Redisplay previous recipes
     };
