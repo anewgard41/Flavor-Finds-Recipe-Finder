@@ -25,17 +25,66 @@ searchInput.addEventListener('keydown', function(event) {
     }
 });
 
+// Function to search for "Chicken"
+function searchForChicken() {
+    const chickenQuery = 'Chicken';
+    searchInput.value = chickenQuery;
+    fetchRecipes(chickenQuery);
+}
+
+// Function to search for "Pork"
+function searchForPork() {
+    const porkQuery = 'Pork';
+    searchInput.value = porkQuery;
+    fetchRecipes(porkQuery);
+}
+
+// Function to search for "Beef"
+function searchForBeef() {
+    const beefQuery = 'Beef';
+    searchInput.value = beefQuery;
+    fetchRecipes(beefQuery);
+}
+
+// Function to search for "Seafood"
+function searchForSeafood() {
+    const seafoodQuery = 'Seafood';
+    searchInput.value = seafoodQuery;
+    fetchRecipes(seafoodQuery);
+}
+
+// Function to search for "Pasta"
+function searchForPasta() {
+    const pastaQuery = 'Pasta';
+    searchInput.value = pastaQuery;
+    fetchRecipes(pastaQuery);
+}
+
+// Function to search for "Fruit"
+function searchForFruit() {
+    const fruitQuery = 'Fruit';
+    searchInput.value = fruitQuery;
+    fetchRecipes(fruitQuery);
+}
+
+// Function to search for "Vegetables"
+function searchForVegetables() {
+    const vegetablesQuery = 'Vegetables';
+    searchInput.value = vegetablesQuery;
+    fetchRecipes(vegetablesQueryQuery);
+}
+
+// Function to search for "Pizza"
+function searchForPizza() {
+    const pizzaQuery = 'Pizza';
+    searchInput.value = pizzaQuery;
+    fetchRecipes(pizzaQuery);
+}
+
 // Add the click option for filter by the items in sidebar
 function filterItems() {
     const chickenFilter = document.getElementById('chickenFilter');
     const items = itemList.getElementsByTagName('li');
-
-    // Loop through the items and hide/show based on the checkbox state
-    for (let i = 0; i < items.length; i++) {
-        const itemText = items[i].textContent.toLowerCase();
-        const containsChicken = itemText.includes('chicken');
-        items[i].style.display = chickenFilter.checked && containsChicken ? 'block' : 'none';
-    }
 }
 
 // Function to fetch recipes
@@ -63,7 +112,10 @@ function displayRecipes(recipes) {
             <div class = "mx-auto mt-auto">
             <a href="${recipeData.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
             <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
-            <i class="fa-regular fa-star"></i>
+            <button class="save-recipe-button"
+            onclick="saveRecipe(JSON.parse(this.getAttribute('data-recipe')))">
+              <i class="far fa-heart"></i>
+              </button>
             </div>
         </div>
     `;
@@ -120,6 +172,27 @@ function displayYouTubeVideos(videos) {
 
     recipesContainer.appendChild(backButton);
 }
+
+const modal = document.getElementById("myModal");
+const closeModal = document.querySelector(".close");
+const modalText = document.getElementById("modalText");
+
+closeModal.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function showModal(message) {
+    modalText.textContent = message;
+    modal.style.display = "block";
+}
+
+
 function saveRecipe(recipeData) {
   if (typeof(Storage) !== "undefined") {
       let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
@@ -129,12 +202,12 @@ function saveRecipe(recipeData) {
           savedRecipes.push(recipeData);
           localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
           console.log(savedRecipes)
-          alert('Recipe saved successfully!');
+          showModal('Recipe saved successfully!');
       } else {
-          alert('Recipe is already saved.');
+        showModal('Recipe is already saved.');
       }
   } else {
-      alert('Local storage is not supported by your browser.');
+    showModal('Local storage is not supported by your browser.');
   }
 }
 
@@ -154,7 +227,6 @@ function displaySavedRecipes(recipes) {
             <div class = "mx-auto mt-auto">
             <a href="${recipeData.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
             <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
-            <i class="fa-regular fa-star"></i>
             </div>
         </div>
 `;
@@ -217,19 +289,4 @@ homeLink.addEventListener('click', function(event) {
 
 })
 
-// Alert box
-function showAlert() {
-    const alertBox = document.getElementById('recipeSavedAlert');
-    if (alertBox) {
-        alertBox.classList.remove('translate-y-full');
-    }
-}
 
-function dismissAlert() {
-    const alertBox = document.getElementById('recipeSavedAlert');
-    if (alertBox) {
-        alertBox.classList.add('translate-y-full');
-    }
-}
-    changingHeader.innerHTML = "Recommended/Popular Recipes!"
-    
