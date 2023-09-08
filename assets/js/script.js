@@ -215,30 +215,30 @@ function saveRecipe(recipeData) {
   }
   
 
-function displaySavedRecipes(recipes) {
-  recipesContainer.innerHTML = '';
-  changingHeader.innerHTML = "";
-  changingHeader.innerHTML = "Favorite Saved Recipes!"
-  console.log(localStorage.getItem('savedRecipes'))
-  console.log(recipes)
-  recipes.forEach(recipe => {
-    const recipeCard = `
-    <div class="card flex flex-col rounded space-y-2 bg-white rounded p-2 m-2 w-72 shadow-xl">
-            <div class="card__body mx-auto rounded bg-white p-2 m-2 flex-1">
-            <img src="${recipes.image}" alt="${recipes.label}" class="mx-auto card__image">
-            <h2 class="text-2xl font-semibold my-2">${recipes.label}</h2>
-            </div>
-            <div class = "mx-auto mt-auto">
-            <a href="${recipes.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
-            <a href="#" onclick="handleWatchVideoClick('${recipes.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
-            </div>
-        </div>
-`;
-
-          recipesContainer.innerHTML += recipeCard;
-      }
-  );
-  const clearButton = document.createElement('button');
+  function displaySavedRecipes(recipes) {
+    recipesContainer.innerHTML = '';
+    changingHeader.innerHTML = "";
+    changingHeader.innerHTML = "Favorite Saved Recipes!"
+    console.log(localStorage.getItem('savedRecipes'))
+    console.log(recipes)
+    recipes.forEach(recipe => {
+      const recipeCard = 
+      `<div class="card flex flex-col rounded space-y-2 bg-white rounded p-2 m-2 w-72 shadow-xl">
+              <div class="card__body mx-auto rounded bg-white p-2 m-2 flex-1">
+              <img src="${recipe.image}" alt="${recipe.label}" class="mx-auto card__image">
+              <h2 class="text-2xl font-semibold my-2">${recipe.label}</h2>
+              </div>
+              <div class = "mx-auto mt-auto">
+              <a href="${recipe.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
+              <a href="#" onclick="handleWatchVideoClick('${recipe.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
+              </div>
+          </div>`
+      ;
+  
+      recipesContainer.innerHTML += recipeCard;
+    });
+  
+    const clearButton = document.createElement('button');
     clearButton.textContent = 'Clear Saved Recipes';
     clearButton.classList.add("mt-auto", "mb-auto", "self-start", "items-center", "h-8", "px-4", "m-2", "text-sm", "transition-colors", "duration-150", "btn", "rounded-lg", "focus:shadow-outline");
   
@@ -254,17 +254,19 @@ function displaySavedRecipes(recipes) {
   
     // Append the Clear button to the recipesContainer
     recipesContainer.appendChild(clearButton);
-}
-function isRecipeSaved(label) {
-  if (typeof(Storage) !== "undefined") {
-      let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
-      return savedRecipes.some(savedRecipe => savedRecipe.label === label);
-  } else {
-      return false;
   }
-}
 
-// Check if there are saved recipes in local storage and retrieve them
+
+    function isRecipeSaved(label) {
+    if (typeof(Storage) !== "undefined") {
+        let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
+        return savedRecipes.some(savedRecipe => savedRecipe.label === label);
+    } else {
+        return false;
+    }
+  }
+
+    // Check if there are saved recipes in local storage and retrieve them
 
 const recipeHistoryLink = document.getElementById('recipeHistoryLink');
 
@@ -275,15 +277,10 @@ recipeHistoryLink.addEventListener('click', function(event) {
     displaySavedRecipes(JSON.parse(localStorage.getItem('savedRecipes')));;
 });
 
-function toggleCheckbox(checkboxId) {
-    const checkbox = document.getElementById(checkboxId);
-    checkbox.checked = !checkbox.checked;
-}
 
-function clearResults() {
-    recipesContainer.innerHTML = '';
-    searchInput.value = '';
-    lastFetchedRecipes = [];
-}
+
+
+
+
 
 
