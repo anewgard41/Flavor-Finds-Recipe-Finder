@@ -113,7 +113,7 @@ function displayYouTubeVideos(videos) {
     // Add the back button after displaying YouTube videos
     const backButton = document.createElement('button');
     backButton.textContent = "Go Back to Recipes";
-    backButton.classList.add("mt-auto", "mb-auto", "self-start", "items-center", "h-8", "px-4", "m-2", "text-sm", "transition-colors", "duration-150", "btn", "rounded-lg", "focus:shadow-outline",);
+    backButton.classList.add("mt-auto", "mb-auto", "self-start", "items-center", "h-8", "px-4", "m-2", "text-sm", "transition-colors", "duration-150", "btn", "rounded-lg", "focus:shadow-outline");
     backButton.onclick = function() {
         displayRecipes(lastFetchedRecipes); // Redisplay previous recipes
     };
@@ -159,7 +159,7 @@ function displaySavedRecipes(recipes) {
   );
   const clearButton = document.createElement('button');
     clearButton.textContent = 'Clear Saved Recipes';
-    clearButton.classList.add('btn', 'rounded', 'p-2', 'text-white', 'bg-red-500', 'hover:bg-red-600');
+    clearButton.classList.add("mt-auto", "mb-auto", "self-start", "items-center", "h-8", "px-4", "m-2", "text-sm", "transition-colors", "duration-150", "btn", "rounded-lg", "focus:shadow-outline");
   
     // Add an event listener to the Clear button
     clearButton.addEventListener('click', function () {
