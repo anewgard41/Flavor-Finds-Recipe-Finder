@@ -81,6 +81,14 @@ function searchForPizza() {
     fetchRecipes(pizzaQuery);
 }
 
+// Get the "Home" link element by its ID
+const homeLink = document.getElementById('homeLink');
+// Add an event listener to the "Home" link
+homeLink.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    location.reload(); // Reload the page
+});
+
 // Function to fetch recipes
 function fetchRecipes(query) {
     fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_Key}&from=0&to=10`)
@@ -217,12 +225,12 @@ function displaySavedRecipes(recipes) {
     const recipeCard = `
     <div class="card flex flex-col rounded space-y-2 bg-white rounded p-2 m-2 w-72 shadow-xl">
             <div class="card__body mx-auto rounded bg-white p-2 m-2 flex-1">
-            <img src="${recipeData.image}" alt="${recipeData.label}" class="mx-auto card__image">
-            <h2 class="text-2xl font-semibold my-2">${recipeData.label}</h2>
+            <img src="${recipes.image}" alt="${recipes.label}" class="mx-auto card__image">
+            <h2 class="text-2xl font-semibold my-2">${recipes.label}</h2>
             </div>
             <div class = "mx-auto mt-auto">
-            <a href="${recipeData.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
-            <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
+            <a href="${recipes.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
+            <a href="#" onclick="handleWatchVideoClick('${recipes.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
             </div>
         </div>
 `;
@@ -278,10 +286,4 @@ function clearResults() {
     lastFetchedRecipes = [];
 }
 
-const homeLink = document.getElementById('homeLink');
-homeLink.addEventListener('click', function(event) {
-    event.preventDefault
-    clearResults();
-
-})
 
