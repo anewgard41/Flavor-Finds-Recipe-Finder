@@ -81,6 +81,14 @@ function searchForPizza() {
     fetchRecipes(pizzaQuery);
 }
 
+// Get the "Home" link element by its ID
+const homeLink = document.getElementById('homeLink');
+// Add an event listener to the "Home" link
+homeLink.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    location.reload(); // Reload the page
+});
+
 // Function to fetch recipes
 function fetchRecipes(query) {
     fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_Key}&from=0&to=10`)
@@ -207,30 +215,30 @@ function saveRecipe(recipeData) {
   }
   
 
-function displaySavedRecipes(recipes) {
-  recipesContainer.innerHTML = '';
-  changingHeader.innerHTML = "";
-  changingHeader.innerHTML = "Favorite Saved Recipes!"
-  console.log(localStorage.getItem('savedRecipes'))
-  console.log(recipes)
-  recipes.forEach(recipe => {
-    const recipeCard = `
-    <div class="card flex flex-col rounded space-y-2 bg-white rounded p-2 m-2 w-72 shadow-xl">
-            <div class="card__body mx-auto rounded bg-white p-2 m-2 flex-1">
-            <img src="${recipeData.image}" alt="${recipeData.label}" class="mx-auto card__image">
-            <h2 class="text-2xl font-semibold my-2">${recipeData.label}</h2>
-            </div>
-            <div class = "mx-auto mt-auto">
-            <a href="${recipeData.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
-            <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
-            </div>
-        </div>
-`;
-
-          recipesContainer.innerHTML += recipeCard;
-      }
-  );
-  const clearButton = document.createElement('button');
+  function displaySavedRecipes(recipes) {
+    recipesContainer.innerHTML = '';
+    changingHeader.innerHTML = "";
+    changingHeader.innerHTML = "Favorite Saved Recipes!"
+    console.log(localStorage.getItem('savedRecipes'))
+    console.log(recipes)
+    recipes.forEach(recipe => {
+      const recipeCard = 
+      `<div class="card flex flex-col rounded space-y-2 bg-white rounded p-2 m-2 w-72 shadow-xl">
+              <div class="card__body mx-auto rounded bg-white p-2 m-2 flex-1">
+              <img src="${recipe.image}" alt="${recipe.label}" class="mx-auto card__image">
+              <h2 class="text-2xl font-semibold my-2">${recipe.label}</h2>
+              </div>
+              <div class = "mx-auto mt-auto">
+              <a href="${recipe.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
+              <a href="#" onclick="handleWatchVideoClick('${recipe.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
+              </div>
+          </div>`
+      ;
+  
+      recipesContainer.innerHTML += recipeCard;
+    });
+  
+    const clearButton = document.createElement('button');
     clearButton.textContent = 'Clear Saved Recipes';
     clearButton.classList.add("mt-auto", "mb-auto", "self-start", "items-center", "h-8", "px-4", "m-2", "text-sm", "transition-colors", "duration-150", "btn", "rounded-lg", "focus:shadow-outline");
   
@@ -246,17 +254,19 @@ function displaySavedRecipes(recipes) {
   
     // Append the Clear button to the recipesContainer
     recipesContainer.appendChild(clearButton);
-}
-function isRecipeSaved(label) {
-  if (typeof(Storage) !== "undefined") {
-      let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
-      return savedRecipes.some(savedRecipe => savedRecipe.label === label);
-  } else {
-      return false;
   }
-}
 
-// Check if there are saved recipes in local storage and retrieve them
+
+    function isRecipeSaved(label) {
+    if (typeof(Storage) !== "undefined") {
+        let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
+        return savedRecipes.some(savedRecipe => savedRecipe.label === label);
+    } else {
+        return false;
+    }
+  }
+
+    // Check if there are saved recipes in local storage and retrieve them
 
 const recipeHistoryLink = document.getElementById('recipeHistoryLink');
 
@@ -267,21 +277,10 @@ recipeHistoryLink.addEventListener('click', function(event) {
     displaySavedRecipes(JSON.parse(localStorage.getItem('savedRecipes')));;
 });
 
-function toggleCheckbox(checkboxId) {
-    const checkbox = document.getElementById(checkboxId);
-    checkbox.checked = !checkbox.checked;
-}
 
-function clearResults() {
-    recipesContainer.innerHTML = '';
-    searchInput.value = '';
-    lastFetchedRecipes = [];
-}
 
-const homeLink = document.getElementById('homeLink');
-homeLink.addEventListener('click', function(event) {
-    event.preventDefault
-    clearResults();
 
-})
+
+
+
 
