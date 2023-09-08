@@ -106,16 +106,17 @@ function displayRecipes(recipes) {
         const recipeData = recipe.recipe;
 
         const recipeCard = `
-        <div class="card flex flex-col rounded space-y-2 bg-white rounded p-2 m-2 w-72 shadow-xl">
-            <div class="card__body mx-auto rounded bg-white p-2 m-2 flex-1">
-            <img src="${recipeData.image}" alt="${recipeData.label}" class="mx-auto card__image">
-            <h2 class="text-2xl font-semibold my-2">${recipeData.label}</h2>
-            </div>
-            <div class = "mx-auto mt-auto">
-            <a href="${recipeData.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
-            <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
-            <i class="fa-regular fa-star"></i>
-            </div>
+        <div class="bg-white shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
+            <img src="${recipeData.image}" alt="${recipeData.label}" class="w-full h-40 rounded-md">
+            <h2 class="text-lg font-bold my-2">${recipeData.label}</h2>
+            <a href="${recipeData.url}" target="_blank" class="text-blue-500 hover:underline">View Recipe</a>
+            <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="text-blue-500 hover:underline">Watch Video</a>
+            <button class="bg-custom-orange text-white rounded-full p-2 hover:bg-custom-hover-orange mt-2 save-recipe-button"
+            data-recipe='${JSON.stringify(recipeData)}' onclick="saveRecipe(JSON.parse(this.getAttribute('data-recipe')))">
+              
+              <i class="far fa-heart">&#11088;</i>
+              </button>
+
         </div>
     `;
 
@@ -149,12 +150,10 @@ function displayYouTubeVideos(videos) {
         const videoUrl = `https://www.youtube.com/watch?v=${video.id.videoId}`;
 
         const videoCard = `
-            <div class="bg-white flex flex-col shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
-            <div class = "flex-1">     
-            <img src="${videoThumbnail}" alt="${videoTitle}" class="w-full h-40 rounded-md">
+            <div class="bg-white shadow-md rounded p-4 my-4 w-64 inline-block mr-4">
+                <img src="${videoThumbnail}" alt="${videoTitle}" class="w-full h-40 rounded-md">
                 <h2 class="text-lg font-bold my-2">${videoTitle}</h2>
-                </div>
-                <a href="${videoUrl}" target="_blank" class="mt-auto self-start inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outlin">Go to Video</a>
+                <a href="${videoUrl}" target="_blank" class="text-blue-500 hover:underline">Go to Video</a>
             </div>
         `;
 
@@ -164,7 +163,6 @@ function displayYouTubeVideos(videos) {
     // Add the back button after displaying YouTube videos
     const backButton = document.createElement('button');
     backButton.textContent = "Go Back to Recipes";
-    backButton.setAttribute = ("class", "btn");
     backButton.onclick = function() {
         displayRecipes(lastFetchedRecipes); // Redisplay previous recipes
     };
@@ -287,3 +285,4 @@ homeLink.addEventListener('click', function(event) {
     });
     event.preventDefault
     clearResults();
+})

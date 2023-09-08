@@ -2,37 +2,34 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Tailwind link -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Font awesome link -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="./assets/css/reset.css">
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <title>Recipe Finder</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind link -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Recipe Finder</title>
 </head>
 
 <body class="bg-gray-100">
     <!-- Navigation Bar -->
     <nav class="bg-blue-500 p-4 flex">
-      <div class="container mx-auto">
-        <div class="container mx-auto flex items-center justify-between flex-wrap">
-          <!-- Logo Image -->
-          <img src="./assets/images/flavorful finds.png" alt="FlavorfulFinds Logo" class=" my-2 h-16">
-          <!-- Search Box -->
-          <div class="flex my-4 items-center space-x-4">
-            <input id="searchInput" type="text" placeholder="Search Recipes"
-              class="bg-white rounded p-2 focus:outline-none">
-            <button id="searchButton" class="btn text-white rounded p-2">Search</button>
-          </div>
-          <!-- Navigation Links or Other Elements -->
-          <div class="space-x-4 my-2">
-            <a href="#" id="homeLink" class="btn rounded p-2 text-white hover:underline">Home</a>
-            <a href="#" class="btn rounded p-2 text-white hover:underline" id="recipeHistoryLink">Recipe History</a>
-          </div>
+        <div class="container mx-auto">
+            <div class="container mx-auto flex items-center justify-between flex-wrap">
+                <!-- Logo Image -->
+                <img src="./assets/images/flavorful finds.png" alt="FlavorfulFinds Logo" class=" my-2 h-16">    
+             <!-- Search Box -->
+             <div class="flex my-4 items-center space-x-4">
+                <input id="searchInput" type="text" placeholder="Search Recipes" class="bg-white rounded p-2 focus:outline-none">
+                <button id="searchButton" class="btn text-white rounded p-2">Search</button>
+              </div>
+              <!-- Navigation Links or Other Elements -->
+              <div class="space-x-4 my-2">
+                <a href="#" id="homeLink" class="btn rounded p-2 text-white hover:underline">Home</a>
+                <a href="#" class="btn rounded p-2 text-white hover:underline" id="recipeHistoryLink">Recipe History</a>
+              </div>
         </div>
     </nav>
 
@@ -47,8 +44,24 @@
           </button>
       </div>
   </div>
+
       <div id="changingHeader" class="p-2">Recommended/Popular Recipes!</div>
       <div id="recipesContainer" class= "container mx-auto mt-10"></div>
+
+     <!-- Recipe Card 1 -Lyubomir
+    <div class="flex container mx-auto mt-8 flex-wrap">
+      <div class="recipe-card">
+        <h1 class="recipe-title"></h1>
+        <img class="recipe-image" src="" alt="">
+        <p class="recipe-description">
+      
+        </p>
+        <div class="button-container">
+            <button class="button">View Recipe</button>
+            <button class="button">Watch Video</button>
+        </div>
+    </div> -->
+    
       <div class="flex container mx-auto mt-8 flex-wrap justify-start">
         <!-- Sidebar for Content Filtering -->
         <section class>
@@ -153,6 +166,7 @@
               </div>
           </div>
         </section>
+
               <div class="card rounded relative space-y-2 bg-white rounded p-2 m-2 w-60"  data-category="baked-cod">
                 <div class="card__body mx-auto rounded bg-white p-2">
                   </button>
