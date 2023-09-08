@@ -71,7 +71,7 @@ function searchForFruit() {
 function searchForVegetables() {
     const vegetablesQuery = 'Vegetables';
     searchInput.value = vegetablesQuery;
-    fetchRecipes(vegetablesQueryQuery);
+    fetchRecipes(vegetablesQuery);
 }
 
 // Function to search for "Pizza"
@@ -79,12 +79,6 @@ function searchForPizza() {
     const pizzaQuery = 'Pizza';
     searchInput.value = pizzaQuery;
     fetchRecipes(pizzaQuery);
-}
-
-// Add the click option for filter by the items in sidebar
-function filterItems() {
-    const chickenFilter = document.getElementById('chickenFilter');
-    const items = itemList.getElementsByTagName('li');
 }
 
 // Function to fetch recipes
@@ -105,14 +99,14 @@ function displayRecipes(recipes) {
 
         const recipeCard = `
         <div class="card flex flex-col rounded space-y-2 bg-white rounded p-2 m-2 w-72 shadow-xl">
-            <div class="card__body mx-auto rounded bg-white p-2 m-2 flex-1">
-            <img src="${recipeData.image}" alt="${recipeData.label}" class="mx-auto card__image">
+            <div class="mx-auto rounded bg-white p-2 m-2 flex-1">
+            <img src="${recipeData.image}" alt="${recipeData.label}" class="mx-auto">
             <h2 class="text-2xl font-semibold my-2">${recipeData.label}</h2>
             </div>
             <div class = "mx-auto mt-auto">
             <a href="${recipeData.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
             <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
-            <button class="save-recipe-button"
+            <button class="save-recipe-button" data-recipe='${JSON.stringify(recipeData)}'
             onclick="saveRecipe(JSON.parse(this.getAttribute('data-recipe')))">
               <i class="far fa-heart"></i>
               </button>
@@ -194,22 +188,24 @@ function showModal(message) {
 
 
 function saveRecipe(recipeData) {
-  if (typeof(Storage) !== "undefined") {
-      let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
-      // Check if the recipeData object is not already in savedRecipes
-      const isDuplicate = savedRecipes.some(savedRecipe => savedRecipe.label === recipeData.label);
-      if (!isDuplicate) {
-          savedRecipes.push(recipeData);
-          localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
-          console.log(savedRecipes)
-          showModal('Recipe saved successfully!');
-      } else {
-        showModal('Recipe is already saved.');
-      }
-  } else {
-    showModal('Local storage is not supported by your browser.');
+    if (typeof(Storage) !== "undefined" || "null") {
+        let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
+        // Check if the recipeData object is not already in savedRecipes
+        console.log(savedRecipes)
+        const isDuplicate = savedRecipes.some(savedRecipe => savedRecipes.label === recipeData.label);
+        if (!isDuplicate) {
+            savedRecipes.push(recipeData);
+            localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
+            console.log(savedRecipes)
+            showModal('Recipe saved successfully!');
+        } else {
+          showModal('Recipe is already saved.');
+        }
+    } else {
+      showModal('Local storage is not supported by your browser.');
+    }
   }
-}
+  
 
 function displaySavedRecipes(recipes) {
   recipesContainer.innerHTML = '';
@@ -221,12 +217,12 @@ function displaySavedRecipes(recipes) {
     const recipeCard = `
     <div class="card flex flex-col rounded space-y-2 bg-white rounded p-2 m-2 w-72 shadow-xl">
             <div class="card__body mx-auto rounded bg-white p-2 m-2 flex-1">
-            <img src="${recipeData.image}" alt="${recipeData.label}" class="mx-auto card__image">
-            <h2 class="text-2xl font-semibold my-2">${recipeData.label}</h2>
+            <img src="${recipe.image}" alt="${recipe.label}" class="mx-auto card__image">
+            <h2 class="text-2xl font-semibold my-2">${recipe.label}</h2>
             </div>
             <div class = "mx-auto mt-auto">
-            <a href="${recipeData.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
-            <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
+            <a href="${recipe.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
+            <a href="#" onclick="handleWatchVideoClick('${recipe.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
             </div>
         </div>
 `;
@@ -288,5 +284,4 @@ homeLink.addEventListener('click', function(event) {
     clearResults();
 
 })
-
 
