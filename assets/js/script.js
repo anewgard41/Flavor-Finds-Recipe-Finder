@@ -112,7 +112,7 @@ function displayRecipes(recipes) {
             <a href="${recipeData.url}" target="_blank" class="text-blue-500 hover:underline">View Recipe</a>
             <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="text-blue-500 hover:underline">Watch Video</a>
             <button class="bg-custom-orange text-white rounded-full p-2 hover:bg-custom-hover-orange mt-2 save-recipe-button"
-            data-recipe='${JSON.stringify(recipeData)}' onclick="saveRecipe(JSON.parse(this.getAttribute('data-recipe')))">
+            onclick="saveRecipe(JSON.parse(this.getAttribute('data-recipe')))">
               
               <i class="far fa-heart">&#11088;</i>
               </button>
