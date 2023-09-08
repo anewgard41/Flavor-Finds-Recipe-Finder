@@ -32,11 +32,11 @@ function searchForChicken() {
     fetchRecipes(chickenQuery);
 }
 
-// Function to search for "Pork"
-function searchForPork() {
-    const porkQuery = 'Pork';
-    searchInput.value = porkQuery;
-    fetchRecipes(porkQuery);
+// Function to search for "Bacon"
+function searchForBacon() {
+    const baconQuery = 'Bacon';
+    searchInput.value = baconQuery;
+    fetchRecipes(baconQuery);
 }
 
 // Function to search for "Beef"
@@ -46,11 +46,11 @@ function searchForBeef() {
     fetchRecipes(beefQuery);
 }
 
-// Function to search for "Seafood"
-function searchForSeafood() {
-    const seafoodQuery = 'Seafood';
-    searchInput.value = seafoodQuery;
-    fetchRecipes(seafoodQuery);
+// Function to search for "Shrimp"
+function searchForShrimp() {
+    const shrimpQuery = 'Shrimp';
+    searchInput.value = shrimpQuery;
+    fetchRecipes(shrimpQuery);
 }
 
 // Function to search for "Pasta"
