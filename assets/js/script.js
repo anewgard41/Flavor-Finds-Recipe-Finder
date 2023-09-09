@@ -192,6 +192,9 @@ window.onclick = function(event) {
 function showModal(message) {
     modalText.textContent = message;
     modal.style.display = "block";
+    setTimeout(function(){
+        modal.style.display = "none";
+    }, 2500)
 }
 
 
