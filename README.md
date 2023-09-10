@@ -16,7 +16,7 @@ Then: I can save my favorite recipes for future reference </br>
 
 # Mock-up of Site
 
-Add Markdown here
+![Gif of the site demo](./assets/images/Recipe%20Finder.gif)
 
 # Link to Live Site
 

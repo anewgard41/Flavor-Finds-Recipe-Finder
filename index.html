@@ -54,7 +54,6 @@
   <div id="recipesContainer" class="flex container mx-auto mt-8 flex-wrap justify-center lg:justify-start">
 
     <!-- Sidebar for Content Filtering -->
-  
     <aside class="rounded bg-secondary m-4 p-4 self-start">
       <h2 class="text-lg font-semibold mb-2">Quick Search by Category</h2>
       <ul class="space-x-2 space-y-2 sm:block flex flex-wrap justify-evenly">
@@ -78,24 +77,22 @@
           <span class="btn rounded hoverable-item p-2" onClick="searchForFruit()" onclick="toggleCheckbox('checkbox6')">Fruit</span>
         </li>
           <li class="flex">
-        <span class="btn rounded hoverable-item p-2" onClick="searchForVegetables()" onclick="toggleCheckbox('checkbox7')">Vegetables</span>
+          <span class="btn rounded hoverable-item p-2" onClick="searchForVegetables()" onclick="toggleCheckbox('checkbox7')">Vegetables</span>
         </li>
           <li class="flex">
-        <span class="btn rounded hoverable-item p-2" onClick="searchForPizza()" onclick="toggleCheckbox('checkbox8')">Pizza</span>
+          <span class="btn rounded hoverable-item p-2" onClick="searchForPizza()" onclick="toggleCheckbox('checkbox8')">Pizza</span>
         </li>
       </ul>
-
   </aside>
   </div>
 
  <!-- modal for save alerts -->
-<div id="myModal" class="modal fixed inset-0 flex items-center justify-center p-4 hidden">
-  <div class="modal-content bg-white rounded shadow-xl max-w-lg mx-auto relative">
+  <div id="myModal" class="modal fixed inset-0 flex items-start justify-start p-4 hidden">
+    <div class="modal-content bg-white rounded shadow-xl max-w-lg mx-auto relative" style="left: 0; right: auto; top: 100px;">
       <span class="close absolute top-2 right-2 cursor-pointer">&times;</span>
       <p id="modalText" class="text-center text-xl p-4">Some text in the Modal..</p>
+    </div>
   </div>
-</div>
-
 
   <!-- Footer -->
   <footer class="bg-gray-300 p-4 mt-auto">
@@ -103,7 +100,6 @@
   </footer>
 
   <script src="assets/js/script.js"></script>
-
+  
 </body>
-
 </html>
