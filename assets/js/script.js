@@ -104,7 +104,6 @@ function displayRecipes(recipes) {
     recipesContainer.innerHTML = '';
     recipes.forEach(recipe => {
         const recipeData = recipe.recipe;
-
         const recipeCard = `
         <div class="card flex flex-col rounded space-y-2 bg-white rounded p-2 m-2 w-72 shadow-xl">
             <div class="mx-auto rounded bg-white p-2 m-2 flex-1">
@@ -114,10 +113,10 @@ function displayRecipes(recipes) {
             <div class = "mx-auto mt-auto">
             <a href="${recipeData.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
             <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
-            <button class="save-recipe-button" data-recipe='${JSON.stringify(recipeData)}'
-            onclick="saveRecipe(JSON.parse(this.getAttribute('data-recipe')))">
-              <i class="far fa-heart"></i>
-              </button>
+            <button class="save-recipe-button" data-recipe='${JSON.stringify(recipeData)}' onclick="saveRecipe(JSON.parse(this.getAttribute('data-recipe')))">
+                <i class="far fa-heart"></i>
+            </button>
+
             </div>
         </div>
     `;
