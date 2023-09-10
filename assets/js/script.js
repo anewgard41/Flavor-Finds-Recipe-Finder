@@ -104,6 +104,8 @@ function displayRecipes(recipes) {
     recipesContainer.innerHTML = '';
     recipes.forEach(recipe => {
         const recipeData = recipe.recipe;
+        console.log(JSON.stringify(recipeData));
+        console.log(recipeData);
 
         const recipeCard = `
         <div class="card flex flex-col rounded space-y-2 bg-white rounded p-2 m-2 w-72 shadow-xl">
@@ -114,7 +116,7 @@ function displayRecipes(recipes) {
             <div class = "mx-auto mt-auto">
             <a href="${recipeData.url}" target="_blank" class="inline-flex items-center h-8 px-2 m-1 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">View Recipe</a>
             <a href="#" onclick="handleWatchVideoClick('${recipeData.label}')" class="inline-flex items-center h-8 px-4 m-2 text-sm transition-colors duration-150 btn rounded-lg focus:shadow-outline">Watch Video</a>
-            <button class="save-recipe-button" data-recipe='${JSON.stringify(recipeData)}'
+            <button class="save-recipe-button" data-recipe='${JSON.stringify(recipeData.label)}'
             onclick="saveRecipe(JSON.parse(this.getAttribute('data-recipe')))">
               <i class="far fa-heart"></i>
               </button>
@@ -203,7 +205,8 @@ function saveRecipe(recipeData) {
         let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
         // Check if the recipeData object is not already in savedRecipes
         console.log(savedRecipes)
-        const isDuplicate = savedRecipes.some(savedRecipe => savedRecipes.label === recipeData.label);
+        const isDuplicate = savedRecipes.some(savedRecipe => savedRecipe === recipeData);
+
         if (!isDuplicate) {
             savedRecipes.push(recipeData);
             localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
